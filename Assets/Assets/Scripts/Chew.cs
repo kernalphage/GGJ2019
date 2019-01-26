@@ -7,7 +7,7 @@ public class Chew : MonoBehaviour {
     public GameObject bone;
 
 
-    public string[] sequence = { "ex","ay","be","ay" };
+    public string[] sequence;
     public int idx;
 
 	// Use this for initialization
@@ -17,10 +17,10 @@ public class Chew : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
-        if(Input.GetButtonDown("joystick button " + sequence[idx]))
+        if (Input.GetButtonDown(sequence[idx]))
         {
             idx = (idx + 1) % sequence.Length;
+
             Debug.Log("now press " + idx);
         }
         //mouth.transform.rotation = Quaternion.Euler(0, 0, Mathf.LerpAngle(mouthMin, mouthMax, mouthT));

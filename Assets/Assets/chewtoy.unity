@@ -390,38 +390,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mouth: {fileID: 1172285454}
   bone: {fileID: 442161600}
-  mouthMin: -55
-  mouthMax: 41.8
-  boneMin: 0
-  boneMax: 20
-  speed: 1
-  offset: 0.3
-  headPos:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 7.0307984
-      outSlope: 7.0307984
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.03545232
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 6.796441
-      outSlope: 6.796441
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.024449885
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 0
-    m_RotationOrder: 4
-  lastAngle: 0
-  sensitivity: 0.8
+  sequence:
+  - ex
+  - ay
+  - be
+  - ay
+  idx: 0
 --- !u!4 &733951182
 Transform:
   m_ObjectHideFlags: 0
