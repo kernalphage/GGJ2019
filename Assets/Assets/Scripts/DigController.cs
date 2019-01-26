@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Animations;
 using UnityEngine;
 
 [System.Serializable]
@@ -12,6 +13,7 @@ public struct Paw
    public string axis;
     public float deadzone;
     public dig lastState;
+    public List<Sprite> sprites;
     public enum dig
     {
         Down, 
@@ -19,10 +21,9 @@ public struct Paw
         Up,
     }
 
-
-    
     public bool update(float moveSpeed, float snapSpeed)
     {
+        t += Mathf.Sin(Time.time) * Time.deltaTime;
         t += Input.GetAxis(axis) * moveSpeed * Time.deltaTime;
         if (Input.GetAxis(axis) < .1)
         {
@@ -40,6 +41,8 @@ public struct Paw
         {
             lastState = dig.Down;
         }
+
+        target.transform.Find("Pawb").GetComponent<SpriteRenderer>().sprite = sprites[Mathf.FloorToInt(kp.RangeMap(t, 0, 1, 0, 19, true))];
         return false;
     }
     
@@ -52,6 +55,7 @@ public class DigController : MonoBehaviour
     public Paw right;
     public float moveSpeed;
     public float snapSpeed;
+
     [Header("Bone")]
     public GameObject bone;
     public Vector3 endBonePos;
@@ -93,6 +97,8 @@ public class DigController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+
+        right.sprites = left.sprites;
         t = score.GetComponent<UnityEngine.UI.Text>();
         curState= state.digging;
     }
@@ -126,6 +132,8 @@ public class DigController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+
         if(curState == state.flying)
         {
             return;
