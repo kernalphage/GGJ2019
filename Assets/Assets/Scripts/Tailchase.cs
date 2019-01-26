@@ -9,6 +9,20 @@ public class Tailchase : MonoBehaviour {
     public float lastAngle = 0;
     public float sensitivity = .1f;
     private int numSpins;
+
+    public int NumSpins
+    {
+        get
+        {
+            return numSpins;
+        }
+
+        set
+        {
+            numSpins = value;
+        }
+    }
+
     // Use this for initialization
     void Start () {
 		
@@ -32,7 +46,7 @@ public class Tailchase : MonoBehaviour {
         lastAngle = lastAngle % 6.28f;
         if(lastAngle < curAngle)
         {
-            numSpins++;
+            NumSpins++;
         }
         //bone.transform.rotation = Quaternion.EulerAngles(0, 0, lastAngle);
 
