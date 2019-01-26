@@ -1,10 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+    
 public class Chew : MonoBehaviour {
-    private GameObject mouth;
-    private GameObject bone;
+    public GameObject mouth;
+    public GameObject bone;
 
 
     public float mouthMin;
@@ -14,6 +14,8 @@ public class Chew : MonoBehaviour {
 
     public float speed;
     public float offset;
+    public float lastAngle = 0;
+    public float sensitivity = .1f;
 
 	// Use this for initialization
 	void Start () {
@@ -22,10 +24,22 @@ public class Chew : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        float mouthT = Mathf.Sin(Time.time * speed);
-        float boneT = Mathf.Sin(Time.time * speed + offset);
 
-        mouth.transform.rotation = Quaternion.Euler(0, 0, Mathf.LerpAngle(mouthMin, mouthMax, mouthT));
-        bone.transform.rotation = Quaternion.Euler(0, 0, Mathf.LerpAngle(boneMin, boneMax, boneT));
+        Vector2 inputPos = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+
+        float angle = Mathf.Atan2(-inputPos.y, inputPos.x);
+        if(angle < lastAngle)
+        {
+            angle += 6.28f;
+        }
+        if (Mathf.Abs(angle - lastAngle) < sensitivity && inputPos.SqrMagnitude() > .5f)
+        {
+            lastAngle = angle;
+        }
+        lastAngle = lastAngle % 6.28f;
+        bone.transform.rotation = Quaternion.EulerAngles(0, 0, lastAngle);
+
+        //mouth.transform.rotation = Quaternion.Euler(0, 0, Mathf.LerpAngle(mouthMin, mouthMax, mouthT));
+        //bone.transform.rotation = Quaternion.Euler(0, 0, Mathf.LerpAngle(boneMin, boneMax, boneT));
     }
 }
