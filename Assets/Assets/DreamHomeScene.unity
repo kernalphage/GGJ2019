@@ -453,11 +453,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 114692970078586960, guid: 16b1fa3da2f17b6439468d8151ebfac8,
-        type: 2}
-      propertyPath: chaseTailMinigame.myDuration
-      value: 5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 16b1fa3da2f17b6439468d8151ebfac8, type: 2}
   m_IsPrefabAsset: 0

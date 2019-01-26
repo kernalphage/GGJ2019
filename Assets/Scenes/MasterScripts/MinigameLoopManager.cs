@@ -22,6 +22,12 @@ public struct MinigameRulesAndConditions
 }
 #endregion
 
+[System.Serializable]
+public struct OverallGameRulesAndConditions
+{
+
+}
+
 public class MinigameLoopManager : MonoBehaviour
 {
     private enum MinigameTypes { notMinigame, Dig, chewMinigame, ChaseTail }
@@ -195,6 +201,9 @@ public class MinigameLoopManager : MonoBehaviour
                 ///
                 break;
             case (MinigameTypes.ChaseTail):
+
+                curScore = FindObjectOfType<Tailchase>().NumSpins;
+                CheckScoreThreshold();
 
                 break;
             case (MinigameTypes.chewMinigame):

@@ -48,6 +48,8 @@ public class Tailchase : MonoBehaviour {
         {
             NumSpins++;
         }
+
+        Debug.Log("NumSpins: " + NumSpins);
         //bone.transform.rotation = Quaternion.EulerAngles(0, 0, lastAngle);
 
         //mouth.transform.rotation = Quaternion.Euler(0, 0, Mathf.LerpAngle(mouthMin, mouthMax, mouthT));

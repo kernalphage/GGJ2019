@@ -67,11 +67,11 @@ MonoBehaviour:
     myDuration: 10
     goodDoggoThreshold: 20
     bestDoggohreshold: 35
-  chaseTailMinigame:
+  chewMinigame:
     myDuration: 10
     goodDoggoThreshold: 5
     bestDoggohreshold: 8
-  chewMinigame:
-    myDuration: 10
+  chaseTailMinigame:
+    myDuration: 5
     goodDoggoThreshold: 5
     bestDoggohreshold: 8
