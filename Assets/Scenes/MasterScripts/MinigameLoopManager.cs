@@ -24,13 +24,13 @@ public struct MinigameRulesAndConditions
 
 public class MinigameLoopManager : MonoBehaviour
 {
-    private enum MinigameTypes { notMinigame, Dig, ChaseTail, chewMinigame }
+    private enum MinigameTypes { notMinigame, Dig, chewMinigame, ChaseTail }
     private MinigameTypes curMinigame;
     private enum MinigameResult { meh, goodDoggo, bestDoggo };
     private MinigameResult curMinigameResult = MinigameResult.meh;
 
     [Tooltip("Meant to be set from the editor")]
-    public MinigameRulesAndConditions digMinigame, chaseTailMinigame, chewMinigame;
+    public MinigameRulesAndConditions digMinigame, chewMinigame, chaseTailMinigame;
 
     private float curMinigameDuration = 0.0f;
     private int /*curMehThreshold,*/ curGoodDogThreshold, curBestestDoggoThreshold;
@@ -75,19 +75,21 @@ public class MinigameLoopManager : MonoBehaviour
                 curGoodDogThreshold = digMinigame.goodDoggoThreshold;
                 curBestestDoggoThreshold = digMinigame.bestDoggohreshold;
                 break;
+
+
             case (2):
-                curMinigame = MinigameTypes.ChaseTail;
-                curMinigameDuration = chaseTailMinigame.myDuration;
-                //  curMediumThreshold = chaseTailMinigame.mediumScoreThreshold;
-                curGoodDogThreshold = chaseTailMinigame.goodDoggoThreshold;
-                curBestestDoggoThreshold = chaseTailMinigame.bestDoggohreshold;
-                break;
-            case (3):
                 curMinigame = MinigameTypes.chewMinigame;
                 curMinigameDuration = chewMinigame.myDuration;
                 // curMediumThreshold = chewMinigame.mediumScoreThreshold;
                 curGoodDogThreshold = chewMinigame.goodDoggoThreshold;
                 curBestestDoggoThreshold = chewMinigame.bestDoggohreshold;
+                break;
+            case (3):
+                curMinigame = MinigameTypes.ChaseTail;
+                curMinigameDuration = chaseTailMinigame.myDuration;
+                //  curMediumThreshold = chaseTailMinigame.mediumScoreThreshold;
+                curGoodDogThreshold = chaseTailMinigame.goodDoggoThreshold;
+                curBestestDoggoThreshold = chaseTailMinigame.bestDoggohreshold;
                 break;
 
         }
@@ -172,7 +174,7 @@ public class MinigameLoopManager : MonoBehaviour
 
     private void EvaluateResults()
     {
-       // Debug.Log("calling EvaluateResults");
+        // Debug.Log("calling EvaluateResults");
 
         resultScreenHolder.ToggleResultsScreen(true);
 
