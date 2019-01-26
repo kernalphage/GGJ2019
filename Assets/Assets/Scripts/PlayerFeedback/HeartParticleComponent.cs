@@ -32,7 +32,7 @@ public class HeartParticleComponent : MonoBehaviour
         //Basically just affecting the particle based on how far through the curIdx we are.
 
         //Clamp it so curIndex is always at least 1
-        _curIdx = Mathf.Clamp(_curIdx, 1, _curIdx + 1);
+        _curIdx = Mathf.Clamp(_curIdx, 3, _curIdx + 1);
         // myParticleSystem.emission.burstCount =
         if (null != GetComponent<ParticleSystem>())
             myParticleSystem = GetComponent<ParticleSystem>();
