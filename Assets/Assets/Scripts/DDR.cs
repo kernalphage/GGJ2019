@@ -12,6 +12,7 @@ public class DDR : MonoBehaviour {
     public List<GameObject> dogButtons;
 
     public float animDelay = .2f;
+    public float hoorayDelay = .5f;
     public Vector3 dogpos;
     public int[] sizes = { 3, 3, 3, 3, 4, 4, 4, 4, 5, 1 };
     public List<int> curSequence;
@@ -64,6 +65,11 @@ public class DDR : MonoBehaviour {
         }
         curState = state.dog;
     }
+    IEnumerator DoHooray()
+    {
+        yield return new WaitForSeconds(hoorayDelay);
+        curState = state.startDude;
+    }
 
     // Update is called once per frame
     void Update ()
@@ -74,6 +80,8 @@ public class DDR : MonoBehaviour {
         }
         if (curState == state.dog)
         {
+
+            // TODO: add wait time before accepting input 
             if (Input.GetButtonDown(axis[curSequence[curidx]]))
             {
                 var dogb = Instantiate(buttons[curSequence[curidx]]);
@@ -83,11 +91,12 @@ public class DDR : MonoBehaviour {
                 if (curidx >= curSequence.Count - 1)
                 {
                     Debug.Log("Finished sequence ");
-                    curState = state.startDude;
+                    StartCoroutine(DoHooray());
                     return;
                 }
                 curidx++;
             }
         }
+
     }
 }
