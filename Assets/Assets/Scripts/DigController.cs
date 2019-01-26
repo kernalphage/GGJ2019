@@ -1,5 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
 [System.Serializable]
 public struct Paw
@@ -46,18 +47,35 @@ public struct Paw
 
 public class DigController : MonoBehaviour
 {
-    [SerializeField]
+    [Header("Paws")]
     public Paw left;
-    [SerializeField]
     public Paw right;
     public float moveSpeed;
     public float snapSpeed;
-    public GameObject score;
-    public GameObject digParticle;
-    public float spread;
-    private UnityEngine.UI.Text t;
+    [Header("Bone")]
+    public GameObject bone;
+    public Vector3 endBonePos;
+    public Vector3 startBonePos;
+    public Vector3 flyBonePos;
+    public float spinSpeed;
+    public int animFrames;
+    [Header("dirt")]
+    public GameObject dirt;
+    public Vector3 dirtStart;
+    public Vector3 dirtEnd;
+    public float jiggle;
 
+    [Header("Gamestate")]
+    public int maxDigs = 40;
+    public GameObject score;
+    private UnityEngine.UI.Text t;
     int digs = 0;
+    public state curState;
+    public enum state
+    {
+        digging, 
+        flying,
+    }
 
     public int Digs
     {
@@ -76,16 +94,42 @@ public class DigController : MonoBehaviour
     void Start()
     {
         t = score.GetComponent<UnityEngine.UI.Text>();
-
+        curState= state.digging;
     }
 
     void dug()
     {
         Digs++;
+        bone.transform.position = Vector3.Lerp(startBonePos, endBonePos, ((float)digs) / maxDigs);
+        dirt.transform.position = Vector3.Lerp(dirtStart,dirtEnd,  ((float)digs) / maxDigs) + Vector3.right * Mathf.Sin(6.28f * Random.value) * jiggle;
+        if (Digs >= maxDigs)
+        {
+            StartCoroutine(FlyAnim());
+        }
+    }
+
+    IEnumerator FlyAnim()
+    {
+        Debug.Log("Starting fly anim");
+        curState = state.flying;
+        for (int i=0; i < animFrames; i++)
+        {
+            bone.transform.rotation = Quaternion.Euler(0, 0, i * spinSpeed);
+            bone.transform.position = Vector3.Lerp(endBonePos, flyBonePos, ((float)i) / animFrames);
+            yield return new WaitForEndOfFrame();
+        }
+        Debug.Log("Ending fly anim");
+        Digs = 0;
+        bone.transform.rotation = Quaternion.identity;
+        curState = state.digging;
     }
     // Update is called once per frame
     void Update()
     {
+        if(curState == state.flying)
+        {
+            return;
+        }
 
         if (left.update(moveSpeed, snapSpeed))
         {
