@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 
 [System.Serializable]
 public struct Paw
@@ -16,6 +17,7 @@ public struct Paw
         Move,
         Up,
     }
+
 
     
     public bool update(float moveSpeed, float snapSpeed)
@@ -51,6 +53,8 @@ public class DigController : MonoBehaviour
     public float moveSpeed;
     public float snapSpeed;
     public GameObject score;
+    public GameObject digParticle;
+    public float spread;
     private UnityEngine.UI.Text t;
 
     int digs = 0;
@@ -74,20 +78,24 @@ public class DigController : MonoBehaviour
         t = score.GetComponent<UnityEngine.UI.Text>();
 
     }
-    
+
+    void dug()
+    {
+        Digs++;
+    }
     // Update is called once per frame
     void Update()
     {
-        
-        if(left.update(moveSpeed, snapSpeed))
-        {
-            Digs++;
-        }
 
+        if (left.update(moveSpeed, snapSpeed))
+        {
+            dug();
+        }
         if(right.update(moveSpeed, snapSpeed))
         {
-            Digs++;
+            dug();
         }
-        t.text = "Score: " + Digs;
+        t.text = "Diggs Dugged: " + Digs;
+
     }
 }
