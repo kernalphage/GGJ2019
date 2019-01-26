@@ -200,6 +200,9 @@ public class MinigameLoopManager : MonoBehaviour
     }
 
 
+    /// <summary>
+    /// Meant to be called at the end of every minigame scene.
+    /// </summary>
     private void EvaluateMinigameResults()
     {
         // Debug.Log("calling EvaluateResults");
@@ -234,7 +237,8 @@ public class MinigameLoopManager : MonoBehaviour
                 CheckScoreThreshold();
                 break;
             case (MinigameTypes.DDRfinalGame):
-
+                curScore = FindObjectOfType<DDR>().curidx;
+                CheckScoreThreshold();
                 break;
 
 

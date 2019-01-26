@@ -75,6 +75,10 @@ MonoBehaviour:
     myDuration: 5
     goodDoggoThreshold: 5
     bestDoggohreshold: 8
+  DDRminigame:
+    myDuration: 10
+    goodDoggoThreshold: 3
+    bestDoggohreshold: 5
   gameConditions:
     currentMinigameCompletedCounter: 0
     totalMinigameCompletionCounter: 3
