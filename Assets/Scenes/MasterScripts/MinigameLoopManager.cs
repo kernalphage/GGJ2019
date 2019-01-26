@@ -222,6 +222,8 @@ public class MinigameLoopManager : MonoBehaviour
                 break;
             case (MinigameTypes.chewMinigame):
 
+                curScore = FindObjectOfType<Chew>().Score;
+                CheckScoreThreshold();
                 break;
             case (MinigameTypes.DDRfinalGame):
 
