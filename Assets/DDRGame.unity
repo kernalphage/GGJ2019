@@ -292,6 +292,8 @@ MonoBehaviour:
   curSequence: 
   curidx: 0
   curState: 0
+  heartParticle: {fileID: 1792211679861330, guid: d88ee0ea802bb204087cecef7f83a15f,
+    type: 2}
 --- !u!81 &123381140
 AudioListener:
   m_ObjectHideFlags: 0

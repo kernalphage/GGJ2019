@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DDR : MonoBehaviour {
+public class DDR : MonoBehaviour
+{
 
-    
+
     public List<string> axis;
     public GameObject[] buttons;
     public Vector3 dudePos;
@@ -26,18 +27,23 @@ public class DDR : MonoBehaviour {
         hooray,
 
     }
+
+
+    [SerializeField]
+    private GameObject heartParticle = null;
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
 
         curState = state.startDude;
         dudeButtons = new List<GameObject>();
         dogButtons = new List<GameObject>();
-	}
+    }
 
 
     void clear()
     {
-        for(int i=0; i < dudeButtons.Count;i++)
+        for (int i = 0; i < dudeButtons.Count; i++)
         {
             Destroy(dudeButtons[i]);
             Destroy(dogButtons[i]);
@@ -47,15 +53,15 @@ public class DDR : MonoBehaviour {
     }
     IEnumerator fill()
     {
-        curState = state.dude;    
+        curState = state.dude;
         clear();
 
-        List<int> idxes = new List<int>{ 0,1,2,3};
+        List<int> idxes = new List<int> { 0, 1, 2, 3 };
         curidx = 0;
         int len = sizes.RandomSample();
         Debug.Log("sequence len " + len);
         curSequence = new List<int>();
-        for(int i=0; i <len; i++)
+        for (int i = 0; i < len; i++)
         {
             curSequence.Add(idxes.RandomSample());
             var dudeb = Instantiate(buttons[curSequence[i]]);
@@ -72,9 +78,9 @@ public class DDR : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update ()
+    void Update()
     {
-        if( curState == state.startDude)
+        if (curState == state.startDude)
         {
             StartCoroutine(fill());
         }
@@ -88,6 +94,10 @@ public class DDR : MonoBehaviour {
                 dogb.transform.position = dogpos + Vector3.right * curidx;
                 dogButtons.Add(dogb);
 
+                //Basic feedback particle
+                HandleParticleFeedback(curidx);
+
+
                 if (curidx >= curSequence.Count - 1)
                 {
                     Debug.Log("Finished sequence ");
@@ -98,5 +108,17 @@ public class DDR : MonoBehaviour {
             }
         }
 
+    }
+
+    private void HandleParticleFeedback(int _curidx)
+    {
+        if (null != heartParticle)
+        {
+            GameObject obj;
+            obj = Instantiate(heartParticle);
+
+            obj.GetComponent<HeartParticleComponent>().UpdateBurstAmount(_curidx);
+        }
+            
     }
 }
