@@ -38,8 +38,8 @@ public class Chew : MonoBehaviour
         if (Input.GetButtonDown(sequence[idx]))
         {
             idx = (idx + 1) % sequence.Length;
-
-            Debug.Log("now press " + idx);
+          
+        Debug.Log("now press " + idx);
         }
         //mouth.transform.rotation = Quaternion.Euler(0, 0, Mathf.LerpAngle(mouthMin, mouthMax, mouthT));
         //bone.transform.rotation = Quaternion.Euler(0, 0, Mathf.LerpAngle(boneMin, boneMax, boneT));
