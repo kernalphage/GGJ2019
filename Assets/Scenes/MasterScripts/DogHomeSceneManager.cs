@@ -106,21 +106,31 @@ public class DogHomeSceneManager : MonoBehaviour
     //
     public void BackToMainScene()
     {
-        ///Probably need some form of evaluation to determine if we go to DDR screen.
-        ///
+
+        //Debug.Log("Current scene name" + SceneManager.GetActiveScene().name);
+       
+        //If we're already in DDR game...don't replay it, just go back to home screen.
+        if (SceneManager.GetActiveScene().name  == "DDRGame")
+        {
+           
+            minigameLoopManager.gameConditions.currentMinigameCompletedCounter = -1;
+        }
+
+
+
         //If we have played the required amount of minigames, just simply go to DDR scene.
         if (minigameLoopManager.CheckOverallGameProgression())
         {
-            SceneManager.LoadScene("DDRGame");
-        }
 
-        //If we are not finished with every minigame, go back to home scene.
+
+            SceneManager.LoadScene("DDRGame");
+        }//If we are not finished with every minigame, go back to home scene.
         else
         {
             SceneManager.LoadScene("DreamHomeScene");
         }
 
-        
+
     }
 
 
