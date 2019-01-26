@@ -52,7 +52,7 @@ public class DogHomeSceneManager : MonoBehaviour
     void OnDisable()
     {
         SceneManager.sceneLoaded -= OnLevelFinishedLoading;
-     //   minigameSceneLoad -= minigameLoopManager.MinigameSceneTransition;
+        //   minigameSceneLoad -= minigameLoopManager.MinigameSceneTransition;
     }
 
 
@@ -65,8 +65,9 @@ public class DogHomeSceneManager : MonoBehaviour
     }
     private void Update()
     {
-
+#if UNITY_EDITOR //Disable in builds.
         TestSceneTransitionsWIthBasicInput();
+#endif
     }
 
     private void TestSceneTransitionsWIthBasicInput()
@@ -94,14 +95,28 @@ public class DogHomeSceneManager : MonoBehaviour
     public void HandleSceneTransition(int _nextSceneIndex)
     {
         SceneManager.LoadScene(_nextSceneIndex);
-       // Debug.Log("Loading sceneindex: " + _nextSceneIndex);
+        // Debug.Log("Loading sceneindex: " + _nextSceneIndex);
     }
 
 
     //
     public void BackToMainScene()
     {
-        SceneManager.LoadScene("DreamHomeScene");
+        ///Probably need some form of evaluation to determine if we go to DDR screen.
+        ///
+        //If we have played the required amount of minigames, just simply go to DDR scene.
+        if (minigameLoopManager.CheckOverallGameProgression())
+        {
+            SceneManager.LoadScene("DDRGame");
+        }
+
+        //If we are not finished with every minigame, go back to home scene.
+        else
+        {
+            SceneManager.LoadScene("DreamHomeScene");
+        }
+
+        
     }
 
 
@@ -112,10 +127,10 @@ public class DogHomeSceneManager : MonoBehaviour
         ///K so this is going to have to line up with the build order. Be super careful about this BUCKO.
         if (_scene.buildIndex >= 1)
         {
-           
+
             //Call this event if we in fact did load up a minigame scene. True == minigame scene, set countdowntimer active to true.
             minigameSceneLoad(true);
-            
+
         }
         else
         {

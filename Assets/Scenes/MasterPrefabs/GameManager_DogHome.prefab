@@ -75,3 +75,7 @@ MonoBehaviour:
     myDuration: 5
     goodDoggoThreshold: 5
     bestDoggohreshold: 8
+  gameConditions:
+    currentMinigameCompletedCounter: 0
+    totalMinigameCompletionCounter: 2
+    superduperfuckingcompleted: 0
