@@ -29,22 +29,18 @@ public class dirtPart : MonoBehaviour {
         t += Time.deltaTime;
         if(t < animTime)
         {
-            dust.transform.position = Vector3.Lerp(Vector3.zero, jump, t / animTime);
-            dust.transform.rotation *= Quaternion.Euler(0, 0, Time.deltaTime * rotateSpeed);
+            dust.transform.localPosition = Vector3.Lerp(Vector3.zero, jump, t / animTime);
+            dust.transform.localRotation *= Quaternion.Euler(0, 0, Time.deltaTime * rotateSpeed);
         }
         else if(t < animTime * 2)
         {
             float mapt = kp.RangeMap(t, animTime, animTime * 2, 0, 1);
-            dust.transform.position = Vector3.Lerp(jump, fade, mapt);
+            dust.transform.localPosition = Vector3.Lerp(jump, fade, mapt);
             dust.GetComponent<SpriteRenderer>().color = Color.Lerp(startColor, endColor, mapt);
         }
         else
         {
-            t = 0;
-
-            dust.GetComponent<SpriteRenderer>().color = startColor;
-            rotateSpeed = Random.value * 2 - 1;
-            rotateSpeed = (Random.value * 2 - 1) * 400;
+            Destroy(gameObject);
         }
     }
 }

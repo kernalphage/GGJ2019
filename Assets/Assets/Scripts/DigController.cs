@@ -68,7 +68,11 @@ public class DigController : MonoBehaviour
     public Vector3 dirtStart;
     public Vector3 dirtEnd;
     public float jiggle;
-
+    [Header("clod")]
+    public GameObject clod;
+    public float clodX;
+    public float clodY;
+    public float clodAngle;
     [Header("Gamestate")]
     public int maxDigs = 40;
     public GameObject score;
@@ -112,6 +116,12 @@ public class DigController : MonoBehaviour
         {
             StartCoroutine(FlyAnim());
         }
+        var d = Instantiate(clod);
+        Vector3 pos = Random.insideUnitCircle;
+        pos.x *= clodX;
+        pos.y *= clodY;
+        d.transform.position = pos;
+        d.transform.rotation = Quaternion.Euler(0, 0, (Random.value * 2 - 1) * clodAngle );
     }
 
     IEnumerator FlyAnim()
@@ -132,8 +142,6 @@ public class DigController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-
         if(curState == state.flying)
         {
             return;
@@ -144,6 +152,10 @@ public class DigController : MonoBehaviour
             dug();
         }
         if(right.update(moveSpeed, snapSpeed))
+        {
+            dug();
+        }
+        if (Input.anyKeyDown)
         {
             dug();
         }
