@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Assets/TailChase_Minigame.unity
     guid: 83ca1a003ef003e4cb0f091f8cbe3a11
+  - enabled: 1
+    path: Assets/DDRGame.unity
+    guid: 6bdd7d2e1d08f41d2b8b700aefc63bba
   m_configObjects: {}
