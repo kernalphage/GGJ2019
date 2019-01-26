@@ -16,12 +16,7 @@ public class VFXController : MonoBehaviour
     // Postprocess the image
     void OnRenderImage(RenderTexture source, RenderTexture destination)
     {
-		intensity =  Mathf.Abs(Mathf.Sin(Time.time * .2f) );
-        if (intensity == 0)
-        {
-            Graphics.Blit(source, destination);
-            return;
-        }
+		//intensity =  Mathf.Abs(Mathf.Sin(Time.time * .2f) );
 
         material.SetFloat("_bwBlend",intensity);
         Graphics.Blit(source, destination, material);
