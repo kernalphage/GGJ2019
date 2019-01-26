@@ -55,6 +55,19 @@ public class DigController : MonoBehaviour
 
     int digs = 0;
 
+    public int Digs
+    {
+        get
+        {
+            return digs;
+        }
+
+        set
+        {
+            digs = value;
+        }
+    }
+
     // Use this for initialization
     void Start()
     {
@@ -68,13 +81,13 @@ public class DigController : MonoBehaviour
         
         if(left.update(moveSpeed, snapSpeed))
         {
-            digs++;
+            Digs++;
         }
 
         if(right.update(moveSpeed, snapSpeed))
         {
-            digs++;
+            Digs++;
         }
-        t.text = "Score: " + digs;
+        t.text = "Score: " + Digs;
     }
 }

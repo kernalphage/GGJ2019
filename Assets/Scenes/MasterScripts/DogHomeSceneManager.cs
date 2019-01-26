@@ -101,16 +101,18 @@ public class DogHomeSceneManager : MonoBehaviour
     //
     public void BackToMainScene()
     {
-        SceneManager.LoadScene("MainScene");
+        SceneManager.LoadScene("DreamHomeScene");
     }
 
 
     void OnLevelFinishedLoading(Scene _scene, LoadSceneMode _mode)
     {
-      //  Debug.Log("FinishedLoading: " + _scene.ToString());
+        minigameLoopManager.NotifyMinigameManagerOfNewMinigame(_scene.buildIndex);
+        //  Debug.Log("FinishedLoading: " + _scene.ToString());
         ///K so this is going to have to line up with the build order. Be super careful about this BUCKO.
-        if (_scene.buildIndex >= 3)
+        if (_scene.buildIndex >= 1)
         {
+           
             //Call this event if we in fact did load up a minigame scene. True == minigame scene, set countdowntimer active to true.
             minigameSceneLoad(true);
             

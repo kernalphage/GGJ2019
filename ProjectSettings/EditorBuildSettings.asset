@@ -23,7 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Assets/chewtoy.unity
     guid: b593656f58d6347d1ab015a78c8682c3
-  - enabled: 0
+  - enabled: 1
     path: Assets/Assets/mash.unity
     guid: 402d681903c1847c88b801b3b2c2eadc
   m_configObjects: {}

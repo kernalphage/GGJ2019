@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4523991907256158}
   - component: {fileID: 114158856876223710}
+  - component: {fileID: 114692970078586960}
   m_Layer: 0
   m_Name: GameManager_DogHome
   m_TagString: Untagged
@@ -51,3 +52,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fb8f4557fdf5354aab4e0e720d77497, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114692970078586960
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1766870913129592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f34e617f0ca31744e969c268790081e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  digMinigame:
+    myDuration: 10
+    goodDoggoThreshold: 20
+    bestDoggohreshold: 35
+  chaseTailMinigame:
+    myDuration: 10
+    goodDoggoThreshold: 5
+    bestDoggohreshold: 8
+  chewMinigame:
+    myDuration: 10
+    goodDoggoThreshold: 5
+    bestDoggohreshold: 8

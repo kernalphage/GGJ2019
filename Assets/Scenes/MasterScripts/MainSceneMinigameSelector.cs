@@ -6,10 +6,10 @@ using UnityEngine.UI;
 
 public class MainSceneMinigameSelector : MonoBehaviour
 {
-    private EventSystem myEventSystem = null;
+    //private EventSystem myEventSystem = null;
 
-    [SerializeField]
-    private Button[] minigameButtons = null;
+    //[SerializeField]
+    //private Button[] minigameButtons = null;
 
     //private List<Button> minigameButtons = new List<Button>();
     public delegate void MinigameSelection(int _sceneIndex);
@@ -17,10 +17,7 @@ public class MainSceneMinigameSelector : MonoBehaviour
 
     void Start()
     {
-        if (null != GetComponent<EventSystem>())
-        {
-            myEventSystem = GetComponent<EventSystem>();
-        }
+       
 
     }
 
@@ -30,15 +27,11 @@ public class MainSceneMinigameSelector : MonoBehaviour
     {
         if (null != FindObjectOfType<DogHomeSceneManager>())
             onMinigameSelect += FindObjectOfType<DogHomeSceneManager>().HandleSceneTransition;
-        if (null != FindObjectOfType<MinigameLoopManager>())
-            onMinigameSelect += FindObjectOfType<MinigameLoopManager>().NotifyMinigameManagerOfNewMinigame;
     }
     private void OnDisable()
     {
         if (null != FindObjectOfType<DogHomeSceneManager>())
             onMinigameSelect -= FindObjectOfType<DogHomeSceneManager>().HandleSceneTransition;
-        if (null != FindObjectOfType<MinigameLoopManager>())
-            onMinigameSelect -= FindObjectOfType<MinigameLoopManager>().NotifyMinigameManagerOfNewMinigame;
     }
     public void StartSceneTransition(int _sceneIndex)
     {
