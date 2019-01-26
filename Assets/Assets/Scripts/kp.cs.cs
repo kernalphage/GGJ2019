@@ -103,8 +103,15 @@ public static class IListExtensions {
 			ts[i] = ts[r];
 			ts[r] = tmp;
 		}
-	}	
-	public static T RandomSample<T>(this IList<T> ts, System.Func<T, float> del ) {
+	}
+    public static T RandomSample<T>(this IList<T> ts)
+    {
+        var count = ts.Count;
+        int sample = Mathf.FloorToInt(UnityEngine.Random.value * count);
+        return ts[sample];
+    }
+
+    public static T RandomSample<T>(this IList<T> ts, System.Func<T, float> del ) {
 
 		var count = ts.Count;
 		var last = count - 1;
