@@ -19,6 +19,10 @@ public class DDR : MonoBehaviour
     public List<int> curSequence;
     public int curidx;
     public state curState = state.dude;
+
+    private DDRDogBehavior DDRDogBehavior = null;
+
+
     public enum state
     {
         startDude,
@@ -38,6 +42,8 @@ public class DDR : MonoBehaviour
         curState = state.startDude;
         dudeButtons = new List<GameObject>();
         dogButtons = new List<GameObject>();
+
+        DDRDogBehavior = FindObjectOfType<DDRDogBehavior>();
     }
 
 
@@ -46,7 +52,10 @@ public class DDR : MonoBehaviour
         for (int i = 0; i < dudeButtons.Count; i++)
         {
             Destroy(dudeButtons[i]);
-            Destroy(dogButtons[i]);
+        }
+        for (int j = 0; j < dogButtons.Count; j++)
+        {
+            Destroy(dogButtons[j]);
         }
         dudeButtons = new List<GameObject>();
         dogButtons = new List<GameObject>();
@@ -96,7 +105,7 @@ public class DDR : MonoBehaviour
 
                 //Basic feedback particle
                 HandleParticleFeedback(curidx);
-
+                HandleAnimationFeedback();
 
                 if (curidx >= curSequence.Count - 1)
                 {
@@ -120,5 +129,11 @@ public class DDR : MonoBehaviour
             obj.GetComponent<HeartParticleComponent>().UpdateBurstAmount(_curidx);
         }
             
+    }
+
+    private void HandleAnimationFeedback()
+    {
+        Debug.Log("Update Animation Feedback");
+        DDRDogBehavior.UpdateAnimationConditions(Random.Range(0,2));
     }
 }
