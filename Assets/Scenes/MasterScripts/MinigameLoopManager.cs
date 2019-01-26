@@ -46,7 +46,7 @@ public class MinigameLoopManager : MonoBehaviour
 
     [Header("Individual win conditions for each minigame.")]
     [Tooltip("Meant to be set from the prefab editor")]
-    public MinigameRulesAndConditions digMinigame, chewMinigame, chaseTailMinigame;
+    public MinigameRulesAndConditions digMinigame, chewMinigame, chaseTailMinigame, DDRminigame;
 
     [Header("Overall win conditions for the game.")]
     [Tooltip("Meant to be set from the editor")]
@@ -110,6 +110,14 @@ public class MinigameLoopManager : MonoBehaviour
                 //  curMediumThreshold = chaseTailMinigame.mediumScoreThreshold;
                 curGoodDogThreshold = chaseTailMinigame.goodDoggoThreshold;
                 curBestestDoggoThreshold = chaseTailMinigame.bestDoggohreshold;
+
+                break;
+            case (4):
+                curMinigame = MinigameTypes.DDRfinalGame;
+                curMinigameDuration = DDRminigame.myDuration;
+                //  curMediumThreshold = chaseTailMinigame.mediumScoreThreshold;
+                curGoodDogThreshold = DDRminigame.goodDoggoThreshold;
+                curBestestDoggoThreshold = DDRminigame.bestDoggohreshold;
                 break;
 
         }

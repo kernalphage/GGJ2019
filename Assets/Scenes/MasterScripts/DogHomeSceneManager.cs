@@ -90,6 +90,10 @@ public class DogHomeSceneManager : MonoBehaviour
         {
             HandleSceneTransition(3);
         }
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            HandleSceneTransition(4);
+        }
     }
 
     public void HandleSceneTransition(int _nextSceneIndex)

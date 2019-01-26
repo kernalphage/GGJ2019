@@ -77,5 +77,5 @@ MonoBehaviour:
     bestDoggohreshold: 8
   gameConditions:
     currentMinigameCompletedCounter: 0
-    totalMinigameCompletionCounter: 2
+    totalMinigameCompletionCounter: 3
     superduperfuckingcompleted: 0
