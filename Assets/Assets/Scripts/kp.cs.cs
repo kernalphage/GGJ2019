@@ -108,7 +108,7 @@ public static class IListExtensions {
     {
         var count = ts.Count;
         int sample = Mathf.FloorToInt(UnityEngine.Random.value * count);
-        return ts[sample];
+        return ts[sample % count]; // bugs ech 
     }
 
     public static T RandomSample<T>(this IList<T> ts, System.Func<T, float> del ) {
@@ -126,6 +126,6 @@ public static class IListExtensions {
 				return ts [i];
 			}
 		}
-		return ts [last];
+		return ts [last % count];
 	}
 }

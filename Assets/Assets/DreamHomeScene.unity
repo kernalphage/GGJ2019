@@ -521,6 +521,36 @@ Prefab:
       propertyPath: m_AnchoredPosition.y
       value: -17.5
       objectReference: {fileID: 0}
+    - target: {fileID: 224952177221212980, guid: c6e1cbadd2664b14cb547c78d63664d8,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 224445121529698638, guid: c6e1cbadd2664b14cb547c78d63664d8,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224666696903480772, guid: c6e1cbadd2664b14cb547c78d63664d8,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 224524472221294858, guid: c6e1cbadd2664b14cb547c78d63664d8,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224988905954194688, guid: c6e1cbadd2664b14cb547c78d63664d8,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 224367442040367102, guid: c6e1cbadd2664b14cb547c78d63664d8,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c6e1cbadd2664b14cb547c78d63664d8, type: 2}
   m_IsPrefabAsset: 0
