@@ -6,10 +6,16 @@ public class Chew : MonoBehaviour
 {
     public GameObject mouth;
     public GameObject bone;
-
-
+    public GameObject fluff;
+    public Sprite[] anims;
     public string[] sequence;
+    public float[] rotations;
     public int idx;
+    private float currot;
+    private float targetRot;
+    public float rotSpeed;
+
+    public Vector2 clodSize;
 
     private int score = 0;
 
@@ -31,16 +37,35 @@ public class Chew : MonoBehaviour
     {
         idx = 0;
     }
+    void chewFluff()
+    {
+        var d = Instantiate(fluff);
+        Vector3 pos = Random.insideUnitCircle;
+        pos.x *= clodSize.x;
+        pos.y *= clodSize.y;
+        pos = bone.transform.TransformPoint(pos);
+        d.transform.position = pos;
+        d.transform.rotation = Quaternion.Euler(0, 0, (Random.value * 360));
+    }
 
     // Update is called once per frame
     void Update()
     {
         if (Input.GetButtonDown(sequence[idx]))
         {
-            idx = (idx + 1) % sequence.Length;
-          
-        Debug.Log("now press " + idx);
+            mouth.GetComponent<SpriteRenderer>().sprite = anims[idx];
+            targetRot = rotations[idx];
+            idx = (idx + 1) % sequence.Length;          
+            Debug.Log("now press " + idx);
+
+            chewFluff();
+            chewFluff();
+            chewFluff();
         }
+        currot = Mathf.LerpAngle(currot, targetRot, Time.deltaTime * rotSpeed); ;
+        mouth.transform.rotation = Quaternion.Euler(0, 0, currot);
+
+        
         //mouth.transform.rotation = Quaternion.Euler(0, 0, Mathf.LerpAngle(mouthMin, mouthMax, mouthT));
         //bone.transform.rotation = Quaternion.Euler(0, 0, Mathf.LerpAngle(boneMin, boneMax, boneT));
     }

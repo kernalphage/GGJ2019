@@ -42,7 +42,7 @@ public struct Paw
             lastState = dig.Down;
         }
 
-        target.transform.Find("Pawb").GetComponent<SpriteRenderer>().sprite = sprites[Mathf.FloorToInt(kp.RangeMap(t, 0, 1, 0, 19, true))];
+        target.transform.Find("Pawb").GetComponent<SpriteRenderer>().sprite = sprites[Mathf.FloorToInt(kp.RangeMap(t, 0, 1, 0, sprites.Count - 1, true))];
         return false;
     }
     
