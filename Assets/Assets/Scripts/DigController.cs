@@ -178,7 +178,8 @@ public class DigController : MonoBehaviour
         {
             dug();
         }
-        t.text = "Diggs Dugged: " + Digs;
+        //Un commenting this will put the "Diggs Dugged" text + score on screen
+        //  t.text = "Diggs Dugged: " + Digs;
 
     }
 }

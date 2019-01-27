@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4465785, g: 0.49641252, b: 0.574817, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -401,27 +401,27 @@ Prefab:
     - target: {fileID: 224162699454522414, guid: c6e1cbadd2664b14cb547c78d63664d8,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224162699454522414, guid: c6e1cbadd2664b14cb547c78d63664d8,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224979947108094634, guid: c6e1cbadd2664b14cb547c78d63664d8,
         type: 2}
       propertyPath: m_AnchorMin.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224979947108094634, guid: c6e1cbadd2664b14cb547c78d63664d8,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224979947108094634, guid: c6e1cbadd2664b14cb547c78d63664d8,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1029037627230866, guid: c6e1cbadd2664b14cb547c78d63664d8, type: 2}
       propertyPath: m_IsActive
@@ -915,6 +915,7 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 89d0842e4008c4ba3afbd24ec7ca7974, type: 3}
   - {fileID: 21300000, guid: 7382eda5573b0499f91ea80baebef9d3, type: 3}
+  onFinished: 
 --- !u!212 &1270064688
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1293,6 +1294,7 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 508bf1b6ba62f4b29bf382a258a3bd45, type: 3}
   - {fileID: 21300000, guid: 5d92a491448874baeabc9d206b23208b, type: 3}
+  onFinished: 
 --- !u!212 &1776355046
 SpriteRenderer:
   m_ObjectHideFlags: 0

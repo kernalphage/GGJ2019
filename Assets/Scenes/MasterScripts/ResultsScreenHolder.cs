@@ -19,6 +19,8 @@ public class ResultsScreenHolder : MonoBehaviour
     [SerializeField]
     private GameObject heartParticle = null;
 
+    [SerializeField]
+    private Sprite winScreen = null, loseScreen = null;
 
 
     //Called from MinigameLoopManager
@@ -53,10 +55,10 @@ public class ResultsScreenHolder : MonoBehaviour
 
     }
 
-    //Also called from MinigameLoopManager
+    //Also called from MinigameLoopManager... This is where we set the visual feedback for win/losses.
     public void PassInResults(int _numberOfStars)
     {
-
+        myText.text = "";
         if (SceneManager.GetActiveScene().name == "DDRGame")
         {
             GameObject obj;
@@ -70,7 +72,8 @@ public class ResultsScreenHolder : MonoBehaviour
             switch (_numberOfStars)
             {
                 case (1):
-                    myText.text = "1 star!";
+                    //myText.text = "1 star!";
+                    overallBG.GetComponent<Image>().sprite = loseScreen;
                     for (int i = 1; i < starImages.Length; i++)
                     {
                         starImages[i].enabled = false;
@@ -81,7 +84,7 @@ public class ResultsScreenHolder : MonoBehaviour
                     }
                     break;
                 case (2):
-                    myText.text = "2 stars!";
+                    //myText.text = "2 stars!";
                     for (int i = 2; i < starImages.Length; i++)
                     {
                         starImages[i].enabled = false;
@@ -92,7 +95,8 @@ public class ResultsScreenHolder : MonoBehaviour
                     }
                     break;
                 case (3):
-                    myText.text = "3 stars!";
+                    overallBG.GetComponent<Image>().sprite = winScreen;
+                    //myText.text = "3 stars!";
                     break;
             }
             StartCoroutine(DelayedTransition(5.0f));

@@ -14,6 +14,25 @@ public class WaitingGame : MonoBehaviour {
     public float decay = .25f;
 
 
+    /// <summary>
+    /// 
+    /// </summary>
+    private int fuckupCounter = 0;
+
+    public int FuckupCounter
+    {
+        get
+        {
+            return fuckupCounter;
+        }
+
+        set
+        {
+            fuckupCounter = value;
+        }
+    }
+
+
     // Use this for initialization
     void Start () {
         (winScreen.GetComponent<SpriteRenderer>()).color = Color.clear;

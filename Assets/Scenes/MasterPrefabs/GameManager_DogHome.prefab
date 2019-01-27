@@ -64,11 +64,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   digMinigame:
-    myDuration: 10
-    goodDoggoThreshold: 20
-    bestDoggohreshold: 35
+    myDuration: 15
+    goodDoggoThreshold: 8
+    bestDoggohreshold: 12
   chewMinigame:
-    myDuration: 10
+    myDuration: 15
     goodDoggoThreshold: 5
     bestDoggohreshold: 8
   chaseTailMinigame:
@@ -80,7 +80,7 @@ MonoBehaviour:
     goodDoggoThreshold: 6
     bestDoggohreshold: 10
   CouchGame:
-    myDuration: 15
+    myDuration: 8
     goodDoggoThreshold: 0
     bestDoggohreshold: 0
   gameConditions:

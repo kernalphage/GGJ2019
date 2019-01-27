@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 
 #region Struct things
@@ -58,10 +59,11 @@ public class MinigameLoopManager : MonoBehaviour
 
     private bool doMinigameCountdown = false;
 
-
+   
 
     private Text currentcountDownText = null;
     private Slider currentbottomSlider = null;
+    private pawClicker pawClicker = null;
 
     //  private DogHomeSceneManager mySceneManager = null;
     private ResultsScreenHolder resultScreenHolder = null;
@@ -90,7 +92,7 @@ public class MinigameLoopManager : MonoBehaviour
 
 
             ///There's definitely better way to handle this lol.
-            case (1):
+            case (2):
                 curMinigame = MinigameTypes.Dig;
                 curMinigameDuration = digMinigame.myDuration;
                 //   curMediumThreshold = digMinigame.mehThreshold;
@@ -99,21 +101,21 @@ public class MinigameLoopManager : MonoBehaviour
                 break;
 
 
-            case (2):
+            case (3):
                 curMinigame = MinigameTypes.chewMinigame;
                 curMinigameDuration = chewMinigame.myDuration;
                 // curMediumThreshold = chewMinigame.mediumScoreThreshold;
                 curGoodDogThreshold = chewMinigame.goodDoggoThreshold;
                 curBestestDoggoThreshold = chewMinigame.bestDoggohreshold;
                 break;
-            case (3):
-                curMinigame = MinigameTypes.ChaseTail;
-                curMinigameDuration = chaseTailMinigame.myDuration;
-                //  curMediumThreshold = chaseTailMinigame.mediumScoreThreshold;
-                curGoodDogThreshold = chaseTailMinigame.goodDoggoThreshold;
-                curBestestDoggoThreshold = chaseTailMinigame.bestDoggohreshold;
+            //case (3):
+            //    curMinigame = MinigameTypes.ChaseTail;
+            //    curMinigameDuration = chaseTailMinigame.myDuration;
+            //    //  curMediumThreshold = chaseTailMinigame.mediumScoreThreshold;
+            //    curGoodDogThreshold = chaseTailMinigame.goodDoggoThreshold;
+            //    curBestestDoggoThreshold = chaseTailMinigame.bestDoggohreshold;
 
-                break;
+            //    break;
             case (4):
                 curMinigame = MinigameTypes.DDRfinalGame;
                 curMinigameDuration = DDRminigame.myDuration;
@@ -153,6 +155,8 @@ public class MinigameLoopManager : MonoBehaviour
             scoreTracker = FindObjectOfType<ScoreTrackerTag>().gameObject;
         if (null != FindObjectOfType<MainSceneButtonTag>())
             FindObjectOfType<MainSceneButtonTag>().gameObject.SetActive(!_startedNewMinigame);
+        if (null != FindObjectOfType<pawClicker>())
+            pawClicker = FindObjectOfType<pawClicker>();
 
 
         //Setting individual components inactive because we need the original parent holder active at the start of a scene in order to set references correctly.
@@ -167,28 +171,37 @@ public class MinigameLoopManager : MonoBehaviour
 
         if (null != currentcountDownText)
         {
-            currentcountDownText.gameObject.SetActive(_startedNewMinigame);
-            currentcountDownText.enabled = _startedNewMinigame;
-            currentcountDownText.text = "Countdown: " + curMinigameDuration.ToString("0");
+            ///If we want countdown text back, un-comment these things.
+            currentcountDownText.gameObject.SetActive(false);/*SetActive(_startedNewMinigame);*/
+            currentcountDownText.enabled = false; /*_startedNewMinigame;*/
+            currentcountDownText.text = "";/*"Countdown: " + curMinigameDuration.ToString("0");*/
         }
 
         if (null != scoreTracker)
         {
             scoreTracker.GetComponent<Text>().text = "";
         }
-
+        if (null != pawClicker)
+        {
+            if (SceneManager.GetActiveScene().name == "DreamHomeScene")
+            {
+                pawClicker.gameObject.SetActive(true);
+            }
+            else
+                pawClicker.gameObject.SetActive(false);
+        }
 
 
         //Only run countdown timer + results screen stuff if we're in a minigame.
         if (_startedNewMinigame)
         {
-           
+
             //Reset timer things
             timer = 0.0f;
             totalTimer = curMinigameDuration;
             doMinigameCountdown = true;
         }
-            
+
 
 
 
@@ -208,8 +221,8 @@ public class MinigameLoopManager : MonoBehaviour
 
     private void MinigameCountdownHandler()
     {
-        
-        
+
+
         //Debug.Log("totalTimer: " + totalTimer);
         //Debug.Log("curMinigameDuration: " + curMinigameDuration);
         if (timer <= totalTimer)
@@ -226,15 +239,15 @@ public class MinigameLoopManager : MonoBehaviour
 
             //GetComponent<DogHomeSceneManager>().BackToMainScene();
 
-           
+
         }
-        else if (timer > totalTimer )
+        else if (timer > totalTimer)
         {
-            
+
             //This keeps getting called twice, which is a problem.
             EvaluateMinigameResults();
             Debug.Log("calling evaluateMinigameResults");
-            
+
 
         }
 
@@ -283,6 +296,12 @@ public class MinigameLoopManager : MonoBehaviour
                 break;
             case (MinigameTypes.DDRfinalGame):
                 curScore = FindObjectOfType<DDR>().curidx;
+                CheckScoreThreshold();
+                break;
+            case (MinigameTypes.couchGame):
+
+                //Invert this
+                curScore = 3 - FindObjectOfType<WaitingGame>().FuckupCounter;
                 CheckScoreThreshold();
                 break;
 
