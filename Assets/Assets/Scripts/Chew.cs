@@ -20,10 +20,12 @@ public class Chew : MonoBehaviour
     public Vector2 clodSize;
 
     private int score = 0;
-    private AudioSource curAudioSource = null;
+    [SerializeField]
+    private AudioSource audioSourceOne = null, audioSourceTwo = null, audioSourceThree = null;
     [SerializeField]
     [Tooltip("Set in editor you dolt")]
-    private AudioClip[] squeaksounds;
+    private AudioClip squeaksound, growl1, growl2;
+
 
     public int Score
     {
@@ -42,7 +44,7 @@ public class Chew : MonoBehaviour
     void Start()
     {
         idx = 0;
-        curAudioSource = GetComponent<AudioSource>();
+        
     }
     void chewFluff()
     {
@@ -66,8 +68,12 @@ public class Chew : MonoBehaviour
             idx = (idx + 1) % sequence.Length;          
             Debug.Log("now press " + idx);
 
-            curAudioSource.pitch = Random.Range(.8f, 1.2f);
-            curAudioSource.PlayOneShot(squeaksounds[Random.Range(0, squeaksounds.Length)], .8f);
+            audioSourceOne.pitch = Random.Range(.8f, 1.2f);
+            audioSourceOne.PlayOneShot(squeaksound, .8f);
+            audioSourceTwo.pitch = Random.Range(.8f, 1.2f);
+            audioSourceTwo.PlayOneShot(growl1, .8f);
+            audioSourceThree.pitch = Random.Range(.8f, 1.2f);
+            audioSourceThree.PlayOneShot(growl2, .8f);
 
             chewFluff();
             chewFluff();
