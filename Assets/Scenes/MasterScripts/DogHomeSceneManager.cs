@@ -92,14 +92,14 @@ public class DogHomeSceneManager : MonoBehaviour
 
     private void Update()
     {
-#if UNITY_EDITOR //Disable in builds.
+
         TestSceneTransitionsWIthBasicInput();
-#endif
+
     }
 
     private void TestSceneTransitionsWIthBasicInput()
     {
-
+#if UNITY_EDITOR //Disable in builds.
         //Better way to do this in the long run.
         if (Input.GetKeyDown(KeyCode.Alpha0))
         {
@@ -117,6 +117,7 @@ public class DogHomeSceneManager : MonoBehaviour
         {
             HandleSceneTransition(3);
         }
+#endif
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
             HandleSceneTransition(4);
