@@ -174,10 +174,6 @@ public class DigController : MonoBehaviour
         {
             dug();
         }
-        if (Input.anyKeyDown)
-        {
-            dug();
-        }
         //Un commenting this will put the "Diggs Dugged" text + score on screen
         //  t.text = "Diggs Dugged: " + Digs;
 
