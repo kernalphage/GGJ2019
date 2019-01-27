@@ -18,6 +18,7 @@ public class DDR : MonoBehaviour
     public GameObject[] buttons;
     public Vector3 dudePos;
     public List<GameObject> dudeButtons;
+    
     public List<GameObject> dogButtons;
 
     public float animDelay = .2f;
