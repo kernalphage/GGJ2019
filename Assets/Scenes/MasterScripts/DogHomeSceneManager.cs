@@ -17,15 +17,12 @@ public class DogHomeSceneManager : MonoBehaviour
     public delegate void MinigameSceneLoaded(bool _minigameStarted);
     public static event MinigameSceneLoaded minigameSceneLoad;
 
-    private int AwakeIntTest = 0;
+    private static int dumbCounter = 0;
     /// <summary>
     /// According to https://docs.unity3d.com/Manual/ExecutionOrder.html, Awake is called before OnEnable
     /// </summary>
     void Awake()
     {
-        AwakeIntTest++;
-
-
         //Make sure I'm the only one in the scene :)
         if (null == instance)
         {
@@ -38,9 +35,18 @@ public class DogHomeSceneManager : MonoBehaviour
 
         //Keep it throughout every scene transition.
         DontDestroyOnLoad(gameObject);
+        if (dumbCounter < 1)
+        {
 
-        ///Last thing we do...in theory once it's done it should call some sort of event dispatcher that signals that we are done loading the game.
-        InitializeGameThings();
+            dumbCounter++;
+
+           
+
+            ///Last thing we do...in theory once it's done it should call some sort of event dispatcher that signals that we are done loading the game.
+            InitializeGameThings();
+        }
+
+
 
 
     }
@@ -52,10 +58,11 @@ public class DogHomeSceneManager : MonoBehaviour
     {
 
         Debug.Log("DogHomeScenemanager.InitializeGameThings() is being called."); //Doesn't print because of how Awake just doesn't print shit correctly if called from Awake.
-        if (null != GetComponent<MinigameLoopManager>())
-        {
-            minigameLoopManager = GetComponent<MinigameLoopManager>();
-        }
+
+        minigameLoopManager = GetComponent<MinigameLoopManager>();
+
+
+
 
         //Do initial Bindings. Keep in mind that .sceneLoaded calls after awake, so OnLevelFinishedLoading should call after this.
         SceneManager.sceneLoaded += OnLevelFinishedLoading;
@@ -63,8 +70,26 @@ public class DogHomeSceneManager : MonoBehaviour
         //Bind scene transition function inside MinigameLoopManager to our event, which we call when level finishes loading.
         minigameSceneLoad += minigameLoopManager.MinigameSceneTransition;
 
+
+
         //So at the very start of the game, we go Awake => OnLevelFInishedLoading (should be bound by this point) => minigameLoopManager.MinigameSceneTransition (also should be bound by this point).
     }
+
+
+    void OnEnable()
+    {
+
+    }
+
+    void OnDisable()
+    {
+        //Debug.Log("Calling OnDisable event from DogHomeSceneManager.cs");
+        //SceneManager.sceneLoaded -= OnLevelFinishedLoading;
+        //minigameSceneLoad -= minigameLoopManager.MinigameSceneTransition;
+    }
+
+
+
     private void Update()
     {
 #if UNITY_EDITOR //Disable in builds.
@@ -135,19 +160,20 @@ public class DogHomeSceneManager : MonoBehaviour
 
     }
 
-    private int practicesceneLoadedInt = 0;
-    private int LevelFinishedLoadingInt = 0;
+    //private int practicesceneLoadedInt = 0;
+    //private int LevelFinishedLoadingInt = 0;
 
     void OnLevelFinishedLoading(Scene _scene, LoadSceneMode _mode)
     {
-        if (AwakeIntTest == 0)
-        {
-            //only increment this if awakeIntTest = 0. This should confirm if Awake indeed calls before SceneManager.sceneLoaded.
-            practicesceneLoadedInt++;
-        }
-        LevelFinishedLoadingInt++; //Increment this everytime OnLevelFinishedLoading is called.
-            
-        Debug.Log("OnLevelFinishedLoading called");
+        Debug.Log("Calling OnLevelFinished Loading");
+        //if (AwakeIntTest == 0)
+        //{
+        //    //only increment this if awakeIntTest = 0. This should confirm if Awake indeed calls before SceneManager.sceneLoaded.
+        //    practicesceneLoadedInt++;
+        //}
+        //LevelFinishedLoadingInt++; //Increment this everytime OnLevelFinishedLoading is called.
+
+
         minigameLoopManager.NotifyMinigameManagerOfNewMinigame(_scene.buildIndex);
         //  Debug.Log("FinishedLoading: " + _scene.ToString());
         ///K so this is going to have to line up with the build order. Be super careful about this BUCKO.

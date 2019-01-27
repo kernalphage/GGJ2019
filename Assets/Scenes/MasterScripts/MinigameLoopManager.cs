@@ -56,6 +56,8 @@ public class MinigameLoopManager : MonoBehaviour
     private int /*curMehThreshold,*/ curGoodDogThreshold, curBestestDoggoThreshold;
     private int curScore = 0;
 
+    private bool doMinigameCountdown = false;
+
 
 
     private Text currentcountDownText = null;
@@ -179,7 +181,14 @@ public class MinigameLoopManager : MonoBehaviour
 
         //Only run countdown timer + results screen stuff if we're in a minigame.
         if (_startedNewMinigame)
-            StartCoroutine(MinigameCountdownHandler());
+        {
+           
+            //Reset timer things
+            timer = 0.0f;
+            totalTimer = curMinigameDuration;
+            doMinigameCountdown = true;
+        }
+            
 
 
 
@@ -188,14 +197,22 @@ public class MinigameLoopManager : MonoBehaviour
 
     private float totalTimer = 0.0f;
     float timer = 0.0f;
-    IEnumerator MinigameCountdownHandler()
-    {
 
-        timer = 0.0f;
-        totalTimer = curMinigameDuration;
+    private void Update()
+    {
+        if (doMinigameCountdown)
+        {
+            MinigameCountdownHandler();
+        }
+    }
+
+    private void MinigameCountdownHandler()
+    {
+        
+        
         //Debug.Log("totalTimer: " + totalTimer);
         //Debug.Log("curMinigameDuration: " + curMinigameDuration);
-        while (timer <= totalTimer)
+        if (timer <= totalTimer)
         {
             //  Debug.Log("Timer" + timer);
 
@@ -209,19 +226,21 @@ public class MinigameLoopManager : MonoBehaviour
 
             //GetComponent<DogHomeSceneManager>().BackToMainScene();
 
-            yield return null;
+           
         }
-        if (timer > totalTimer)
+        else if (timer > totalTimer )
         {
+            
+            //This keeps getting called twice, which is a problem.
             EvaluateMinigameResults();
             Debug.Log("calling evaluateMinigameResults");
-            yield return null;
+            
 
         }
 
 
 
-      
+
     }
 
 
@@ -230,8 +249,8 @@ public class MinigameLoopManager : MonoBehaviour
     /// </summary>
     private void EvaluateMinigameResults()
     {
-        StopCoroutine(MinigameCountdownHandler());
-        // Debug.Log("calling EvaluateResults");
+        //Stop update calling
+        doMinigameCountdown = false;
 
         resultScreenHolder.ToggleResultsScreen(true);
 
