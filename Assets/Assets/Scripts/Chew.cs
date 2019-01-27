@@ -53,7 +53,7 @@ public class Chew : MonoBehaviour
         pos.y *= clodSize.y;
         pos = bone.transform.GetChild(0).TransformPoint(pos);
         d.transform.position = pos;
-        d.transform.rotation = Quaternion.Euler(0, 0, (Random.value * 90 + 140));
+        d.transform.rotation = Quaternion.Euler(0, 0, (Random.value * 60 + 140));
     }
 
     // Update is called once per frame

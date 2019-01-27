@@ -20,6 +20,12 @@ public class WaitingGame : MonoBehaviour
     public float wagStart;
     public GameObject tail;
 
+    [Header("Sweat")]
+    public GameObject sweat;
+    public Vector3 sweatPos;
+    public Vector3 sweatArea;
+    public float sweatProbability;
+
     /// <summary>
     /// 
     /// </summary>
@@ -66,6 +72,12 @@ public class WaitingGame : MonoBehaviour
         {
             rotx += Time.deltaTime * rotSpeed;
             FuckupCounter++;
+
+            if(Random.value < sweatProbability)
+            {
+                var s = Instantiate(sweat);
+                s.transform.position = Vector3.Scale(Random.insideUnitSphere, sweatArea) + sweatPos; 
+            }
         }
         rotx -= rotx * Time.deltaTime * decay;
         rotx = Mathf.Clamp01(rotx);
