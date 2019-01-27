@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WaitingGame : MonoBehaviour {
+public class WaitingGame : MonoBehaviour
+{
 
     public float waitingTime;
     public UnityEngine.UI.Text t;
@@ -34,18 +35,20 @@ public class WaitingGame : MonoBehaviour {
 
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         (winScreen.GetComponent<SpriteRenderer>()).color = Color.clear;
         StartCoroutine(WaitForIt());
     }
-	IEnumerator WaitForIt()
+    IEnumerator WaitForIt()
     {
         yield return new WaitForSeconds(waitingTime);
         (winScreen.GetComponent<SpriteRenderer>()).color = Color.white;
         // Win goes here
     }
     // Update is called once per frame
-    void Update () {
+    void Update()
+    {
         string[] axes = { "Horizontal", "Vertical", "Fire1", "Fire2" };
         bool pressed = Input.anyKeyDown;
         foreach (var axis in axes)
@@ -57,6 +60,7 @@ public class WaitingGame : MonoBehaviour {
         if (pressed)
         {
             rotx += Time.deltaTime * rotSpeed;
+            FuckupCounter++;
         }
         rotx -= rotx * Time.deltaTime * decay;
         rotx = Mathf.Clamp01(rotx);
