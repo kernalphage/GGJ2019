@@ -30,11 +30,11 @@ public class ResultsScreenHolder : MonoBehaviour
         {
             for (int i = 0; i < starImages.Length; i++)
             {
-                starImages[i].enabled = _active;
+                starImages[i].enabled =  false; /*_active;*/ 
             }
             for (int i = 0; i < starImageBgs.Length; i++)
             {
-                starImageBgs[i].enabled = _active;
+                starImageBgs[i].enabled = false; /*_active;*/
 
             }
             overallBG.enabled = _active;

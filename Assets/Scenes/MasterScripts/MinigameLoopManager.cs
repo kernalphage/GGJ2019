@@ -302,6 +302,7 @@ public class MinigameLoopManager : MonoBehaviour
 
                 //Invert this
                 curScore = 3 - FindObjectOfType<WaitingGame>().FuckupCounter;
+                GameObject.Find("StayCanvas").SetActive(false);
                 CheckScoreThreshold();
                 break;
 
