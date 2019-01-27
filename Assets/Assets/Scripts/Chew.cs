@@ -20,6 +20,10 @@ public class Chew : MonoBehaviour
     public Vector2 clodSize;
 
     private int score = 0;
+    private AudioSource curAudioSource = null;
+    [SerializeField]
+    [Tooltip("Set in editor you dolt")]
+    private AudioClip[] squeaksounds;
 
     public int Score
     {
@@ -38,10 +42,12 @@ public class Chew : MonoBehaviour
     void Start()
     {
         idx = 0;
+        curAudioSource = GetComponent<AudioSource>();
     }
     void chewFluff()
     {
-        var d = Instantiate(fluff);
+        /*var*/ GameObject d = Instantiate(fluff);
+        
         Vector3 pos = Random.insideUnitCircle;
         pos.x *= clodSize.x;
         pos.y *= clodSize.y;
@@ -59,6 +65,9 @@ public class Chew : MonoBehaviour
             targetRot = rotations[idx];
             idx = (idx + 1) % sequence.Length;          
             Debug.Log("now press " + idx);
+
+            curAudioSource.pitch = Random.Range(.8f, 1.2f);
+            curAudioSource.PlayOneShot(squeaksounds[Random.Range(0, squeaksounds.Length)], .8f);
 
             chewFluff();
             chewFluff();
