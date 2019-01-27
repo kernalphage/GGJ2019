@@ -553,6 +553,10 @@ MonoBehaviour:
   onFinished: 
   specialSprite: {fileID: 1635713943}
   specialSpriteBG: {fileID: 2069547661}
+  DoorCreek: {fileID: 8300000, guid: e79f0e694f792744980f6c2d577469c5, type: 3}
+  DoorSlam: {fileID: 8300000, guid: f51341ef49b043d4fbacb2f220f2640e, type: 3}
+  HappyMusicStart: {fileID: 8300000, guid: 84622dbfd962abb42a4a7ce8e1683015, type: 3}
+  sadWhine: {fileID: 8300000, guid: 6609428e0ae7e5e45b08d99f5e5e1de7, type: 3}
 --- !u!212 &2094418316
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -632,7 +636,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 84622dbfd962abb42a4a7ce8e1683015, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

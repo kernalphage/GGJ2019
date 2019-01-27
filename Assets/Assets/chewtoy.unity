@@ -890,7 +890,7 @@ MonoBehaviour:
   tweenSpeed: 11.54
   clodSize: {x: 2, y: 1}
   squeaksounds:
-  - {fileID: 8300000, guid: 913107bf826727c438e8c9c5c89829cc, type: 3}
+  - {fileID: 8300000, guid: 0c1faca51693cc644b33067625b5fb26, type: 3}
 --- !u!4 &733951182
 Transform:
   m_ObjectHideFlags: 0

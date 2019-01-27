@@ -10,6 +10,7 @@ public class DDR : MonoBehaviour
 
     private Vector3 DogpositionWithOffset;
 
+   
 
     [SerializeField]
     private Vector3 offset;

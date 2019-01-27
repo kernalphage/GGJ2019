@@ -12,6 +12,9 @@ public class IntroFlipbook : flipbook
     [SerializeField]
     private SpriteRenderer specialSpriteBG; //super jank fix -_-
 
+    [SerializeField]
+    private AudioClip DoorCreek, DoorSlam, HappyMusicStart , sadWhine;
+
     private bool stopThePresses = false;
     private AudioSource audioSource = null;
 
@@ -42,7 +45,7 @@ public class IntroFlipbook : flipbook
         reallyFinish = false;
         setSprite();
         //This is all crap but it's going to work so eat my shorts.
-        Debug.Log("Shane is a god");
+        //Debug.Log("Shane is a god");
         yield return new WaitForSeconds(0.75f);
 
         GetComponent<SpriteRenderer>().enabled = false;
@@ -80,10 +83,24 @@ public class IntroFlipbook : flipbook
 
             }
 
+            if (idx == 3)
+            {
+                audioSource.PlayOneShot(DoorCreek, 0.7f);
+                
+            }
+            if (idx == 4)
+            {
+                audioSource.PlayOneShot(DoorSlam, 0.8f);
+            }
+            if (idx == 5)
+            {
+                audioSource.PlayOneShot(sadWhine, 0.8f);
+            }
             //yeyeye hardcode
             if (idx == 7)
             {
-                audioSource.Play();
+                audioSource.PlayOneShot(HappyMusicStart, 1.0f);
+                
             }
 
             if (idx == sprites.Count)

@@ -58,7 +58,9 @@ public class MinigameLoopManager : MonoBehaviour
     private int curScore = 0;
 
     private bool doMinigameCountdown = false;
-
+    private AudioSource myAudioSource = null;
+    [SerializeField]
+    private AudioClip loseSound, winSound;
 
 
     private Text currentcountDownText = null;
@@ -267,6 +269,10 @@ public class MinigameLoopManager : MonoBehaviour
         //Stop update calling
         doMinigameCountdown = false;
 
+        if (myAudioSource == null)
+        {
+            myAudioSource = GetComponent<AudioSource>();
+        }
         resultScreenHolder.ToggleResultsScreen(true);
 
         //Which minigame did we just complete?
@@ -323,19 +329,24 @@ public class MinigameLoopManager : MonoBehaviour
         {
             curMinigameResult = MinigameResult.meh;
             resultScreenHolder.PassInResults(1);
+            myAudioSource.PlayOneShot(loseSound, 0.8f);
         }
         //2 star
         else if (curScore >= curGoodDogThreshold && curScore < curBestestDoggoThreshold)
         {
             curMinigameResult = MinigameResult.goodDoggo;
             resultScreenHolder.PassInResults(2);
-
+            myAudioSource.PlayOneShot(winSound, 0.8f);
+            myAudioSource.PlayOneShot(winSound, 0.8f);
         }
         //3 stars
         else if (curScore >= curBestestDoggoThreshold)
         {
             curMinigameResult = MinigameResult.bestDoggo;
             resultScreenHolder.PassInResults(3);
+            myAudioSource.PlayOneShot(winSound, 0.8f);
+            myAudioSource.PlayOneShot(winSound, 0.8f);
+            myAudioSource.PlayOneShot(winSound, 0.8f);
 
         }
         return curMinigameResult;
