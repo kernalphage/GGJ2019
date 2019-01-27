@@ -9,6 +9,8 @@ public class IntroFlipbook : flipbook
 
     [SerializeField]
     private SpriteRenderer specialSprite;
+    [SerializeField]
+    private SpriteRenderer specialSpriteBG; //super jank fix -_-
 
     private bool stopThePresses = false;
 
@@ -39,13 +41,15 @@ public class IntroFlipbook : flipbook
         setSprite();
         //This is all crap but it's going to work so eat my shorts.
         Debug.Log("Shane is a god");
-        yield return new WaitForSeconds(3.0f);
+        yield return new WaitForSeconds(0.75f);
+
+        GetComponent<SpriteRenderer>().enabled = false;
 
         //Do things after  delay yay..like alpha fading out previous sprite, alpha fading in new image.
         if (null != specialSprite) //turn on the doggo.
             specialSprite.gameObject.SetActive(true);
 
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(0.75f);
         if (null != specialSprite.gameObject.GetComponent<Animator>())
         {
             if (null != specialSprite.gameObject.GetComponent<Animator>().runtimeAnimatorController)
@@ -55,7 +59,7 @@ public class IntroFlipbook : flipbook
             }
         }
 
-        yield return new WaitForSeconds(3.0f);
+        yield return new WaitForSeconds(5.0f);
         SceneManager.LoadScene("DreamHomeScene");
         //fliptime = 80;
 
