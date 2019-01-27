@@ -86,8 +86,9 @@ public class DDR : MonoBehaviour
         curSequence = new List<int>();
         for (int i = 0; i < len; i++)
         {
-            curSequence.Add(idxes.RandomSample());
-            var dudeb = Instantiate(buttons[curSequence[i]]);
+            var index = idxes.RandomSample();
+            curSequence.Add(index);
+            var dudeb = Instantiate(buttons[index % buttons.Length] );
             dudeb.transform.position = dudePos + Vector3.right * i * 1.2f;
             dudeButtons.Add(dudeb);
             yield return new WaitForSeconds(animDelay);
