@@ -310,7 +310,8 @@ public class MinigameLoopManager : MonoBehaviour
 
                 //Invert this
                 curScore = 3 - FindObjectOfType<WaitingGame>().FuckupCounter;
-                GameObject.Find("StayCanvas").SetActive(false);
+                if (null != GameObject.Find("StayCanvas"))
+                    GameObject.Find("StayCanvas").SetActive(false);
                 CheckScoreThreshold();
                 break;
 
@@ -329,24 +330,33 @@ public class MinigameLoopManager : MonoBehaviour
         {
             curMinigameResult = MinigameResult.meh;
             resultScreenHolder.PassInResults(1);
-            myAudioSource.PlayOneShot(loseSound, 0.8f);
+            if (null != myAudioSource && null != loseSound)
+                myAudioSource.PlayOneShot(loseSound, 0.8f);
         }
         //2 star
         else if (curScore >= curGoodDogThreshold && curScore < curBestestDoggoThreshold)
         {
             curMinigameResult = MinigameResult.goodDoggo;
             resultScreenHolder.PassInResults(2);
-            myAudioSource.PlayOneShot(winSound, 0.8f);
-            myAudioSource.PlayOneShot(winSound, 0.8f);
+            if (null != myAudioSource && null != winSound)
+            {
+                myAudioSource.PlayOneShot(winSound, 0.8f);
+                myAudioSource.PlayOneShot(winSound, 0.8f);
+            }
+
         }
         //3 stars
         else if (curScore >= curBestestDoggoThreshold)
         {
             curMinigameResult = MinigameResult.bestDoggo;
             resultScreenHolder.PassInResults(3);
-            myAudioSource.PlayOneShot(winSound, 0.8f);
-            myAudioSource.PlayOneShot(winSound, 0.8f);
-            myAudioSource.PlayOneShot(winSound, 0.8f);
+
+            if (null != myAudioSource && null != winSound)
+            {
+                myAudioSource.PlayOneShot(winSound, 0.8f);
+                myAudioSource.PlayOneShot(winSound, 0.8f);
+                myAudioSource.PlayOneShot(winSound, 0.8f);
+            }
 
         }
         return curMinigameResult;
