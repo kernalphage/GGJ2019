@@ -9,21 +9,21 @@ public class WaitingGame : MonoBehaviour {
     public GameObject winScreen;
     public GameObject doge;
     public float rotx = 0;
-    public float rotz = 0;
-    public Vector3 rotA;
-    public Vector3 rotB;
+    public Vector3 moveStrength;
     public float rotSpeed;
     public float decay = .25f;
 
 
     // Use this for initialization
     void Start () {
-// StartCoroutine(WaitForIt());
+        (winScreen.GetComponent<SpriteRenderer>()).color = Color.clear;
+        StartCoroutine(WaitForIt());
     }
 	IEnumerator WaitForIt()
     {
         yield return new WaitForSeconds(waitingTime);
-        
+        (winScreen.GetComponent<SpriteRenderer>()).color = Color.white;
+        // Win goes here
     }
     // Update is called once per frame
     void Update () {
@@ -31,7 +31,8 @@ public class WaitingGame : MonoBehaviour {
         bool pressed = Input.anyKeyDown;
         foreach (var axis in axes)
         {
-            rotz += Mathf.Abs(Input.GetAxis(axis)) * Time.deltaTime * rotSpeed;
+            //   rotz += Mathf.Abs(Input.GetAxis(axis)) * Time.deltaTime * rotSpeed;
+            pressed |= Mathf.Abs(Input.GetAxis(axis)) > .5f;
         }
 
         if (pressed)
@@ -40,9 +41,7 @@ public class WaitingGame : MonoBehaviour {
         }
         rotx -= rotx * Time.deltaTime * decay;
         rotx = Mathf.Clamp01(rotx);
-        rotz -= rotz * Time.deltaTime * decay;
-        rotz = Mathf.Clamp01(rotz);
-        doge.transform.rotation = Quaternion.Euler(rotA * rotx + rotB * rotz);
+        doge.transform.localScale = Vector3.one + (moveStrength * rotx);
 
     }
 }
