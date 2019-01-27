@@ -13,6 +13,7 @@ public class IntroFlipbook : flipbook
     private SpriteRenderer specialSpriteBG; //super jank fix -_-
 
     private bool stopThePresses = false;
+    private AudioSource audioSource = null;
 
     public override void Start()
     {
@@ -23,6 +24,7 @@ public class IntroFlipbook : flipbook
             //If it's currently active, turn it off.
             specialSprite.gameObject.SetActive(false);
         }
+        audioSource = GetComponent<AudioSource>();
         Debug.Log("Binding");
         idx = -1;
     }
@@ -76,6 +78,12 @@ public class IntroFlipbook : flipbook
                 curtime += fliptime;
                 idx++;
 
+            }
+
+            //yeyeye hardcode
+            if (idx == 7)
+            {
+                audioSource.Play();
             }
 
             if (idx == sprites.Count)
