@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4490716323406676}
   - component: {fileID: 212766841675032364}
+  - component: {fileID: 114167244868548896}
   m_Layer: 0
   m_Name: exbutton
   m_TagString: Untagged
@@ -40,6 +41,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114167244868548896
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1412134199602622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e452a285cb61b0b4387ba941073cb74a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toggleSPrite: {fileID: 21300000, guid: b7939e2e1152a4c4f935c04d7d4b31cb, type: 3}
 --- !u!212 &212766841675032364
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -75,7 +88,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 69262a6821f164745915d0fc4fcec5fc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6a4892d03f4134691ba15daaee3f7f47, type: 3}
   m_Color: {r: 0, g: 0.25, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

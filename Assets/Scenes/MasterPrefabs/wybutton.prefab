@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4330112623870420}
   - component: {fileID: 212837629557397490}
+  - component: {fileID: 114783377375998908}
   m_Layer: 0
   m_Name: wybutton
   m_TagString: Untagged
@@ -40,6 +41,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114783377375998908
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1338905480524908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e452a285cb61b0b4387ba941073cb74a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toggleSPrite: {fileID: 21300000, guid: e4044c23b84a44ffebc3c0e009198346, type: 3}
 --- !u!212 &212837629557397490
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -75,7 +88,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 9074a597ca8754fa4b7174ba29939c1c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 158cfb127fde04d2097e795553a0bf34, type: 3}
   m_Color: {r: 0.9585333, g: 1, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0

@@ -87,7 +87,7 @@ public class DDR : MonoBehaviour
         {
             curSequence.Add(idxes.RandomSample());
             var dudeb = Instantiate(buttons[curSequence[i]]);
-            dudeb.transform.position = dudePos + Vector3.right * i;
+            dudeb.transform.position = dudePos + Vector3.right * i * 1.5f;
             dudeButtons.Add(dudeb);
             yield return new WaitForSeconds(animDelay);
         }
@@ -112,9 +112,10 @@ public class DDR : MonoBehaviour
             // TODO: add wait time before accepting input 
             if (Input.GetButtonDown(axis[curSequence[curidx]]))
             {
-                var dogb = Instantiate(buttons[curSequence[curidx]]);
-                dogb.transform.position = dogpos + Vector3.right * curidx;
-                dogButtons.Add(dogb);
+                //var dogb = Instantiate(buttons[curSequence[curidx]]);
+                //dogb.transform.position = dogpos + Vector3.right * curidx;
+                //dogButtons.Add(dogb);
+                dudeButtons[curidx].GetComponent<ButtonPFI>().ActivateSecondSprite();
 
                 //Basic feedback particle
                 HandleParticleFeedback(curidx);
