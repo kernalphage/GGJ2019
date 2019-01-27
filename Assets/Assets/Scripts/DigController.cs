@@ -14,6 +14,8 @@ public struct Paw
     public float deadzone;
     public dig lastState;
     public List<Sprite> sprites;
+    public float audioDelay;
+    public float curaudio;
     public enum dig
     {
         Down, 
@@ -23,6 +25,12 @@ public struct Paw
 
     public bool update(float moveSpeed, float snapSpeed)
     {
+        var audio = target.GetComponent<AudioSource>();
+        curaudio -= Time.deltaTime;
+        if(audio.isPlaying && curaudio < 0)
+        {
+            audio.Stop();
+        }
         t += Mathf.Sin(Time.time) * Time.deltaTime;
         t += Input.GetAxis(axis) * moveSpeed * Time.deltaTime;
         if (Input.GetAxis(axis) < .1)
@@ -35,6 +43,14 @@ public struct Paw
         {
             bool finishedDig = lastState != dig.Up;
             lastState = dig.Up;
+
+            if (finishedDig)
+            {
+                Debug.Log("Finished dig");
+                audio.time = (audio.clip.length - audioDelay) * Random.value;
+                audio.PlayDelayed(0);
+                curaudio = audioDelay;
+            }
             return finishedDig;
         }
         else if (t > 1.0f - deadzone)
@@ -78,6 +94,8 @@ public class DigController : MonoBehaviour
     public GameObject score;
     private UnityEngine.UI.Text t;
     int digs = 0;
+    float curAudioTime;
+
     public state curState;
     public enum state
     {
