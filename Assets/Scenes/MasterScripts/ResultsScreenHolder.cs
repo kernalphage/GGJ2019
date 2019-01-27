@@ -78,14 +78,17 @@ public class ResultsScreenHolder : MonoBehaviour
             {
                 case (1):
                     //myText.text = "1 star!";
-                    overallBG.GetComponent<Image>().sprite = loseScreen;
+                    if (null != overallBG)
+                        overallBG.GetComponent<Image>().sprite = loseScreen;
                     for (int i = 1; i < starImages.Length; i++)
                     {
-                        starImages[i].enabled = false;
+                        if (null != starImages[i])
+                            starImages[i].enabled = false;
                     }
                     for (int i = 1; i < starImageBgs.Length; i++)
                     {
-                        starImageBgs[i].enabled = false;
+                        if (null != starImageBgs[i])
+                            starImageBgs[i].enabled = false;
                     }
                     break;
                 case (2):
