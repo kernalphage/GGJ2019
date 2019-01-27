@@ -223,27 +223,27 @@ Prefab:
     - target: {fileID: 224162699454522414, guid: c6e1cbadd2664b14cb547c78d63664d8,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224162699454522414, guid: c6e1cbadd2664b14cb547c78d63664d8,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224979947108094634, guid: c6e1cbadd2664b14cb547c78d63664d8,
         type: 2}
       propertyPath: m_AnchorMin.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224979947108094634, guid: c6e1cbadd2664b14cb547c78d63664d8,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224979947108094634, guid: c6e1cbadd2664b14cb547c78d63664d8,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114905306374937914, guid: c6e1cbadd2664b14cb547c78d63664d8,
         type: 2}
@@ -323,7 +323,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1029037627230866, guid: c6e1cbadd2664b14cb547c78d63664d8, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c6e1cbadd2664b14cb547c78d63664d8, type: 2}
