@@ -571,6 +571,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mouth: {fileID: 1140400997}
   bone: {fileID: 442161600}
+  fluff: {fileID: 1156770289962896, guid: e51198ef9f3b84f13821d3673cd33eaa, type: 2}
   anims:
   - {fileID: 21300000, guid: 4d9c00b657f9746dd8616aeb86370d4e, type: 3}
   - {fileID: 21300000, guid: 51ff6297f8c464eeca92a59743a8a682, type: 3}
@@ -588,6 +589,7 @@ MonoBehaviour:
   - 0
   idx: 0
   rotSpeed: 20
+  clodSize: {x: 2, y: 1}
 --- !u!4 &733951182
 Transform:
   m_ObjectHideFlags: 0

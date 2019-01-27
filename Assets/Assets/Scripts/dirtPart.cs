@@ -36,6 +36,7 @@ public class dirtPart : MonoBehaviour {
         {
             float mapt = kp.RangeMap(t, animTime, animTime * 2, 0, 1);
             dust.transform.localPosition = Vector3.Lerp(jump, fade, mapt);
+            dust.transform.localRotation *= Quaternion.Euler(0, 0, Time.deltaTime * rotateSpeed);
             dust.GetComponent<SpriteRenderer>().color = Color.Lerp(startColor, endColor, mapt);
         }
         else
