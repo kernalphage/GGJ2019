@@ -125,7 +125,15 @@ public class DogHomeSceneManager : MonoBehaviour
 
     public void HandleSceneTransition(int _nextSceneIndex)
     {
-        SceneManager.LoadScene(_nextSceneIndex);
+        if (_nextSceneIndex != 7)
+        {
+            SceneManager.LoadScene(_nextSceneIndex);
+        }
+        else if (_nextSceneIndex == 7)
+        {
+            Application.Quit();
+        }
+    
         // Debug.Log("Loading sceneindex: " + _nextSceneIndex);
     }
 
@@ -184,7 +192,7 @@ public class DogHomeSceneManager : MonoBehaviour
             minigameSceneLoad(true);
             Debug.Log("Loading Minigame Scene");
         }
-        else
+        else 
         {
             minigameSceneLoad(false);
             Debug.Log("Loading Home Scene or Splash Screen");
