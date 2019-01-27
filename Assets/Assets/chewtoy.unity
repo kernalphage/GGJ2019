@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.4465785, g: 0.49641252, b: 0.574817, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -549,27 +549,27 @@ Prefab:
     - target: {fileID: 224162699454522414, guid: c6e1cbadd2664b14cb547c78d63664d8,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224162699454522414, guid: c6e1cbadd2664b14cb547c78d63664d8,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224979947108094634, guid: c6e1cbadd2664b14cb547c78d63664d8,
         type: 2}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224979947108094634, guid: c6e1cbadd2664b14cb547c78d63664d8,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224979947108094634, guid: c6e1cbadd2664b14cb547c78d63664d8,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 223896966550871274, guid: c6e1cbadd2664b14cb547c78d63664d8,
         type: 2}
@@ -678,7 +678,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 533436903}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.252, y: -0.01999998, z: 0}
+  m_LocalPosition: {x: -8, y: -0.01999998, z: 0}
   m_LocalScale: {x: 1.612, y: 1.612, z: 1.612}
   m_Children: []
   m_Father: {fileID: 733951182}
@@ -719,7 +719,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -120
-  m_Sprite: {fileID: 21300000, guid: 97d53597153d94509850d17c1dfb6128, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 01ee160a83e6141bd98835d37b61f3d3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -761,9 +761,9 @@ MonoBehaviour:
   bone: {fileID: 442161600}
   fluff: {fileID: 1156770289962896, guid: e51198ef9f3b84f13821d3673cd33eaa, type: 2}
   anims:
-  - {fileID: 21300000, guid: 9fa5c70d39bf047a09ab6b109f57695d, type: 3}
-  - {fileID: 21300000, guid: d6784694d4fa4479ca425f06ba7f22d1, type: 3}
   - {fileID: 21300000, guid: 09e14ee9c7c0a46cab8d1554efdabd14, type: 3}
+  - {fileID: 21300000, guid: d6784694d4fa4479ca425f06ba7f22d1, type: 3}
+  - {fileID: 21300000, guid: 9fa5c70d39bf047a09ab6b109f57695d, type: 3}
   - {fileID: 21300000, guid: d6784694d4fa4479ca425f06ba7f22d1, type: 3}
   sequence:
   - ex
@@ -1022,7 +1022,7 @@ Transform:
   m_GameObject: {fileID: 1356020832}
   m_LocalRotation: {x: -0, y: -0, z: -0.17497471, w: 0.98457295}
   m_LocalPosition: {x: 0.74, y: -3.29, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: -1, z: 1}
   m_Children: []
   m_Father: {fileID: 442161601}
   m_RootOrder: 0
