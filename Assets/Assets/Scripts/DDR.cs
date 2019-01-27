@@ -4,7 +4,15 @@ using UnityEngine;
 
 public class DDR : MonoBehaviour
 {
+    [SerializeField]
+    private Transform dogTransform;
+    private Transform finalTransform;
 
+    private Vector3 DogpositionWithOffset;
+
+
+    [SerializeField]
+    private Vector3 offset;
 
     public List<string> axis;
     public GameObject[] buttons;
@@ -21,6 +29,7 @@ public class DDR : MonoBehaviour
     public state curState = state.dude;
 
     private DDRDogBehavior DDRDogBehavior = null;
+    private SquashAndStretchSprite DogSquashAndStretch = null;
 
 
     public enum state
@@ -38,12 +47,15 @@ public class DDR : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        DogpositionWithOffset = dogTransform.position + offset;
+
 
         curState = state.startDude;
         dudeButtons = new List<GameObject>();
         dogButtons = new List<GameObject>();
 
         DDRDogBehavior = FindObjectOfType<DDRDogBehavior>();
+        DogSquashAndStretch = DDRDogBehavior.gameObject.GetComponentInChildren<SquashAndStretchSprite>();
     }
 
 
@@ -68,7 +80,7 @@ public class DDR : MonoBehaviour
         List<int> idxes = new List<int> { 0, 1, 2, 3 };
         curidx = 0;
         int len = sizes.RandomSample();
-        Debug.Log("sequence len " + len);
+        //  Debug.Log("sequence len " + len);
         curSequence = new List<int>();
         for (int i = 0; i < len; i++)
         {
@@ -105,15 +117,21 @@ public class DDR : MonoBehaviour
 
                 //Basic feedback particle
                 HandleParticleFeedback(curidx);
-                HandleAnimationFeedback();
+
+                HandleAnimationFeedback(axis[curSequence[curidx]]);
 
                 if (curidx >= curSequence.Count - 1)
                 {
-                    Debug.Log("Finished sequence ");
+                    //  Debug.Log("Finished sequence ");
                     StartCoroutine(DoHooray());
                     return;
                 }
                 curidx++;
+            }
+            else if (Input.anyKeyDown)
+            {
+                //   Debug.Log("anykey returning true");
+                HandleAnimationFeedback("sad");
             }
         }
 
@@ -124,16 +142,71 @@ public class DDR : MonoBehaviour
         if (null != heartParticle)
         {
             GameObject obj;
-            obj = Instantiate(heartParticle);
+            obj = Instantiate(heartParticle, dogTransform);
 
             obj.GetComponent<HeartParticleComponent>().UpdateBurstAmount(_curidx);
         }
-            
+
     }
 
-    private void HandleAnimationFeedback()
+    private int curAnimInt = 0;
+    private int lastAnimInt = 0;
+
+    private void HandleAnimationFeedback(string _Input)
     {
-        Debug.Log("Update Animation Feedback");
-        DDRDogBehavior.UpdateAnimationConditions(Random.Range(0,2));
+
+        Debug.Log("Is this calling");
+
+        switch (_Input)
+        {
+            case ("ex"):
+
+                curAnimInt = 1;
+                break;
+            case ("be"):
+
+                curAnimInt = 4;
+                break;
+            case ("ay"):
+
+                curAnimInt = 3;
+                break;
+            case ("wy"):
+
+                curAnimInt = 2;
+
+                break;
+            case ("sad"):
+                curAnimInt = -1;
+                break;
+            default:
+
+                curAnimInt = 0;
+                break;
+
+        }
+
+
+        if (curAnimInt != lastAnimInt)
+        {
+            //Only call if it's different
+            DDRDogBehavior.UpdateAnimationConditions(curAnimInt);
+
+        }
+        else if (curAnimInt == lastAnimInt)
+        {
+
+            //If it's the same as the last input, we should restart the squash and stretch
+            DogSquashAndStretch.ResetSquashAndStretch();
+
+
+        }
+        //And lastly, update lastAnimInt;
+        curAnimInt = lastAnimInt;
+
+        // Debug.Log("Update Animation Feedback");
+
     }
+
+
 }
