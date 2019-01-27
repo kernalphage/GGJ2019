@@ -463,27 +463,27 @@ Prefab:
     - target: {fileID: 224162699454522414, guid: c6e1cbadd2664b14cb547c78d63664d8,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224162699454522414, guid: c6e1cbadd2664b14cb547c78d63664d8,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224979947108094634, guid: c6e1cbadd2664b14cb547c78d63664d8,
         type: 2}
       propertyPath: m_AnchorMin.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224979947108094634, guid: c6e1cbadd2664b14cb547c78d63664d8,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224979947108094634, guid: c6e1cbadd2664b14cb547c78d63664d8,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c6e1cbadd2664b14cb547c78d63664d8, type: 2}
@@ -516,16 +516,6 @@ RectTransform:
 --- !u!1 &1682191443 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1543693855615504, guid: c6e1cbadd2664b14cb547c78d63664d8,
-    type: 2}
-  m_PrefabInternal: {fileID: 1682191437}
---- !u!224 &1682191444 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 224445121529698638, guid: c6e1cbadd2664b14cb547c78d63664d8,
-    type: 2}
-  m_PrefabInternal: {fileID: 1682191437}
---- !u!1 &1682191445 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1832336106245432, guid: c6e1cbadd2664b14cb547c78d63664d8,
     type: 2}
   m_PrefabInternal: {fileID: 1682191437}
 --- !u!114 &1682191446
@@ -609,36 +599,6 @@ MonoBehaviour:
           m_Mode: 2
           m_Arguments:
             m_ObjectArgument: {fileID: 1682191442}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
-        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  delegates: []
---- !u!114 &1682191449
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1682191445}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1872026594}
-          m_MethodName: SetParent
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 1682191444}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0

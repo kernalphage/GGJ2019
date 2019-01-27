@@ -17,12 +17,14 @@ public class DogHomeSceneManager : MonoBehaviour
     public delegate void MinigameSceneLoaded(bool _minigameStarted);
     public static event MinigameSceneLoaded minigameSceneLoad;
 
-
+    private int AwakeIntTest = 0;
     /// <summary>
     /// According to https://docs.unity3d.com/Manual/ExecutionOrder.html, Awake is called before OnEnable
     /// </summary>
     void Awake()
     {
+        AwakeIntTest++;
+
 
         //Make sure I'm the only one in the scene :)
         if (null == instance)
@@ -37,31 +39,31 @@ public class DogHomeSceneManager : MonoBehaviour
         //Keep it throughout every scene transition.
         DontDestroyOnLoad(gameObject);
 
-
-
-
         ///Last thing we do...in theory once it's done it should call some sort of event dispatcher that signals that we are done loading the game.
         InitializeGameThings();
-    }
-    void OnEnable()
-    {
-        SceneManager.sceneLoaded += OnLevelFinishedLoading;
-        minigameSceneLoad += minigameLoopManager.MinigameSceneTransition;
+
 
     }
-    void OnDisable()
-    {
-        SceneManager.sceneLoaded -= OnLevelFinishedLoading;
-        //   minigameSceneLoad -= minigameLoopManager.MinigameSceneTransition;
-    }
+
+
 
 
     private void InitializeGameThings()
     {
+
+        Debug.Log("DogHomeScenemanager.InitializeGameThings() is being called."); //Doesn't print because of how Awake just doesn't print shit correctly if called from Awake.
         if (null != GetComponent<MinigameLoopManager>())
         {
             minigameLoopManager = GetComponent<MinigameLoopManager>();
         }
+
+        //Do initial Bindings. Keep in mind that .sceneLoaded calls after awake, so OnLevelFinishedLoading should call after this.
+        SceneManager.sceneLoaded += OnLevelFinishedLoading;
+
+        //Bind scene transition function inside MinigameLoopManager to our event, which we call when level finishes loading.
+        minigameSceneLoad += minigameLoopManager.MinigameSceneTransition;
+
+        //So at the very start of the game, we go Awake => OnLevelFInishedLoading (should be bound by this point) => minigameLoopManager.MinigameSceneTransition (also should be bound by this point).
     }
     private void Update()
     {
@@ -108,11 +110,11 @@ public class DogHomeSceneManager : MonoBehaviour
     {
 
         //Debug.Log("Current scene name" + SceneManager.GetActiveScene().name);
-       
+
         //If we're already in DDR game...don't replay it, just go back to home screen.
-        if (SceneManager.GetActiveScene().name  == "DDRGame")
+        if (SceneManager.GetActiveScene().name == "DDRGame")
         {
-           
+
             minigameLoopManager.gameConditions.currentMinigameCompletedCounter = -1;
         }
 
@@ -133,9 +135,19 @@ public class DogHomeSceneManager : MonoBehaviour
 
     }
 
+    private int practicesceneLoadedInt = 0;
+    private int LevelFinishedLoadingInt = 0;
 
     void OnLevelFinishedLoading(Scene _scene, LoadSceneMode _mode)
     {
+        if (AwakeIntTest == 0)
+        {
+            //only increment this if awakeIntTest = 0. This should confirm if Awake indeed calls before SceneManager.sceneLoaded.
+            practicesceneLoadedInt++;
+        }
+        LevelFinishedLoadingInt++; //Increment this everytime OnLevelFinishedLoading is called.
+            
+        Debug.Log("OnLevelFinishedLoading called");
         minigameLoopManager.NotifyMinigameManagerOfNewMinigame(_scene.buildIndex);
         //  Debug.Log("FinishedLoading: " + _scene.ToString());
         ///K so this is going to have to line up with the build order. Be super careful about this BUCKO.
@@ -144,11 +156,12 @@ public class DogHomeSceneManager : MonoBehaviour
 
             //Call this event if we in fact did load up a minigame scene. True == minigame scene, set countdowntimer active to true.
             minigameSceneLoad(true);
-
+            Debug.Log("Loading Minigame Scene");
         }
         else
         {
             minigameSceneLoad(false);
+            Debug.Log("Loading Home Scene or Splash Screen");
         }
     }
 }

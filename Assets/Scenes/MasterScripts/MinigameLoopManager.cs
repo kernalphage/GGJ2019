@@ -39,14 +39,14 @@ public struct OverallGameRulesAndConditions
 
 public class MinigameLoopManager : MonoBehaviour
 {
-    private enum MinigameTypes { notMinigame, Dig, chewMinigame, ChaseTail, DDRfinalGame }
+    private enum MinigameTypes { notMinigame, Dig, chewMinigame, ChaseTail, DDRfinalGame, couchGame }
     private MinigameTypes curMinigame;
     private enum MinigameResult { meh, goodDoggo, bestDoggo };
     private MinigameResult curMinigameResult = MinigameResult.meh;
 
     [Header("Individual win conditions for each minigame.")]
     [Tooltip("Meant to be set from the prefab editor")]
-    public MinigameRulesAndConditions digMinigame, chewMinigame, chaseTailMinigame, DDRminigame;
+    public MinigameRulesAndConditions digMinigame, chewMinigame, chaseTailMinigame, DDRminigame, CouchGame;
 
     [Header("Overall win conditions for the game.")]
     [Tooltip("Meant to be set from the editor")]
@@ -119,10 +119,17 @@ public class MinigameLoopManager : MonoBehaviour
                 curGoodDogThreshold = DDRminigame.goodDoggoThreshold;
                 curBestestDoggoThreshold = DDRminigame.bestDoggohreshold;
                 break;
+            case (5):
+                curMinigame = MinigameTypes.couchGame;
+                curMinigameDuration = CouchGame.myDuration;
+
+                curGoodDogThreshold = CouchGame.goodDoggoThreshold;
+                curBestestDoggoThreshold = CouchGame.bestDoggohreshold;
+                break;
 
         }
 
-        Debug.Log("MinigameLoopManager.NotifyMinigameGamaner reporting for duty. Current Minigame type: " + curMinigame);
+        // Debug.Log("MinigameLoopManager.NotifyMinigameGamaner reporting for duty. Current Minigame type: " + curMinigame);
     }
 
     ///Need an event for once we finished loading into the minigame scene to set the duration of that scene + update the relevant UI
@@ -132,13 +139,18 @@ public class MinigameLoopManager : MonoBehaviour
 
 
         //Set reference to these guys first. We need to find them everytime we enter a new scene because the UI is different in each scene.
-        currentcountDownText = FindObjectOfType<CountdownTimer>().GetComponent<Text>();
-        currentbottomSlider = FindObjectOfType<MinigameCountdownSlider>().GetComponent<Slider>();
-        resultScreenHolder = FindObjectOfType<ResultsScreenHolder>();
-        dreamHomeHolder = FindObjectOfType<DreamHomeScreenTag>();
-        scoreTracker = FindObjectOfType<ScoreTrackerTag>().gameObject;
-
-        FindObjectOfType<MainSceneButtonTag>().gameObject.SetActive(!_startedNewMinigame);
+        if (null != FindObjectOfType<CountdownTimer>())
+            currentcountDownText = FindObjectOfType<CountdownTimer>().GetComponent<Text>();
+        if (null != FindObjectOfType<MinigameCountdownSlider>())
+            currentbottomSlider = FindObjectOfType<MinigameCountdownSlider>().GetComponent<Slider>();
+        if (null != FindObjectOfType<ResultsScreenHolder>())
+            resultScreenHolder = FindObjectOfType<ResultsScreenHolder>();
+        if (null != FindObjectOfType<DreamHomeScreenTag>())
+            dreamHomeHolder = FindObjectOfType<DreamHomeScreenTag>();
+        if (null != FindObjectOfType<ScoreTrackerTag>())
+            scoreTracker = FindObjectOfType<ScoreTrackerTag>().gameObject;
+        if (null != FindObjectOfType<MainSceneButtonTag>())
+            FindObjectOfType<MainSceneButtonTag>().gameObject.SetActive(!_startedNewMinigame);
 
 
         //Setting individual components inactive because we need the original parent holder active at the start of a scene in order to set references correctly.
@@ -146,31 +158,41 @@ public class MinigameLoopManager : MonoBehaviour
 
 
         //Set relevant gameobjects/components on or off based on off it is a minigame scene or not.
-        dreamHomeHolder.gameObject.SetActive(!_startedNewMinigame);
-        currentbottomSlider.gameObject.SetActive(_startedNewMinigame);
+        if (null != dreamHomeHolder)
+            dreamHomeHolder.gameObject.SetActive(!_startedNewMinigame);
+        if (null != currentbottomSlider)
+            currentbottomSlider.gameObject.SetActive(_startedNewMinigame);
 
-        currentcountDownText.gameObject.SetActive(_startedNewMinigame);
-        currentcountDownText.enabled = _startedNewMinigame;
+        if (null != currentcountDownText)
+        {
+            currentcountDownText.gameObject.SetActive(_startedNewMinigame);
+            currentcountDownText.enabled = _startedNewMinigame;
+            currentcountDownText.text = "Countdown: " + curMinigameDuration.ToString("0");
+        }
+
         if (null != scoreTracker)
         {
             scoreTracker.GetComponent<Text>().text = "";
         }
 
-        currentcountDownText.text = "Countdown: " + curMinigameDuration.ToString("0");
+
 
         //Only run countdown timer + results screen stuff if we're in a minigame.
         if (_startedNewMinigame)
             StartCoroutine(MinigameCountdownHandler());
 
-        //Debug.Log(_startedNewMinigame);
+
 
     }
 
+
+    private float totalTimer = 0.0f;
+    float timer = 0.0f;
     IEnumerator MinigameCountdownHandler()
     {
 
-        float timer = 0.0f;
-        float totalTimer = curMinigameDuration;
+        timer = 0.0f;
+        totalTimer = curMinigameDuration;
         //Debug.Log("totalTimer: " + totalTimer);
         //Debug.Log("curMinigameDuration: " + curMinigameDuration);
         while (timer <= totalTimer)
@@ -192,11 +214,14 @@ public class MinigameLoopManager : MonoBehaviour
         if (timer > totalTimer)
         {
             EvaluateMinigameResults();
+            Debug.Log("calling evaluateMinigameResults");
+            yield return null;
+
         }
 
 
 
-        yield return null;
+      
     }
 
 
@@ -205,6 +230,7 @@ public class MinigameLoopManager : MonoBehaviour
     /// </summary>
     private void EvaluateMinigameResults()
     {
+        StopCoroutine(MinigameCountdownHandler());
         // Debug.Log("calling EvaluateResults");
 
         resultScreenHolder.ToggleResultsScreen(true);

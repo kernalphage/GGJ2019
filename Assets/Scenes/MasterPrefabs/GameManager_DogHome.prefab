@@ -79,6 +79,10 @@ MonoBehaviour:
     myDuration: 30
     goodDoggoThreshold: 6
     bestDoggohreshold: 10
+  CouchGame:
+    myDuration: 15
+    goodDoggoThreshold: 0
+    bestDoggohreshold: 0
   gameConditions:
     currentMinigameCompletedCounter: 0
     totalMinigameCompletionCounter: 3
