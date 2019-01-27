@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.4465785, g: 0.49641252, b: 0.574817, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -721,7 +721,7 @@ Prefab:
     - target: {fileID: 114692970078586960, guid: 16b1fa3da2f17b6439468d8151ebfac8,
         type: 2}
       propertyPath: chewMinigame.myDuration
-      value: 100000
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1766870913129592, guid: 16b1fa3da2f17b6439468d8151ebfac8, type: 2}
       propertyPath: m_IsActive
