@@ -219,7 +219,7 @@ MonoBehaviour:
     target: {fileID: 1104116357}
     t: 0
     startPos: {x: 0, y: 0, z: 0}
-    endPos: {x: -2.5, y: -2.5, z: 3.25}
+    endPos: {x: 0, y: 0, z: 0}
     axis: Fire1
     deadzone: 0.1
     lastState: 0
@@ -240,21 +240,17 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 1c8e58e162f964df0b09d0fe0b492e8c, type: 3}
     - {fileID: 21300000, guid: 1463393ffc72941afbcf159f8a6062c2, type: 3}
     - {fileID: 21300000, guid: c5a2fab67c68c4b1c959153b3cbadf0e, type: 3}
-    - {fileID: 21300000, guid: a1831c4ae28a54c719a2d366faf5080d, type: 3}
-    - {fileID: 21300000, guid: 5a89e3e0fe8d94e57a738f79dc1a4aaa, type: 3}
-    - {fileID: 21300000, guid: 2945ae91f17cd434f9ec386b570837e2, type: 3}
-    - {fileID: 21300000, guid: b278e65e9e24e49c3b850dac867b25b6, type: 3}
   right:
     target: {fileID: 689894239}
     t: 0
     startPos: {x: 0, y: 0, z: 0}
-    endPos: {x: 2.5, y: -2.5, z: 2}
+    endPos: {x: 0, y: 0, z: 0}
     axis: Fire2
     deadzone: 0.1
     lastState: 0
     sprites: []
-  moveSpeed: 7.1
-  snapSpeed: 22.95
+  moveSpeed: 7.8
+  snapSpeed: 18.06
   bone: {fileID: 115124654}
   endBonePos: {x: 0, y: 0, z: 0}
   startBonePos: {x: 0, y: -0.4, z: 0}
@@ -508,13 +504,13 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 312914472}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.17, y: -5, z: 2}
+  m_LocalRotation: {x: 0, y: 0, z: 0.14426985, w: 0.98953843}
+  m_LocalPosition: {x: -10.34, y: -2.99, z: 2}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 1104116358}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 16.59}
 --- !u!1 &344428789 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1716257847490106, guid: c6e1cbadd2664b14cb547c78d63664d8,
@@ -571,7 +567,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1104116357}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 312914475}
@@ -788,13 +784,13 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1423412838}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.9, y: -5, z: 2}
+  m_LocalRotation: {x: 0, y: 0, z: -0.13917309, w: 0.9902681}
+  m_LocalPosition: {x: 10.43, y: -2.87, z: 2}
   m_LocalScale: {x: -2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 689894241}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -16}
 --- !u!212 &1423412840
 SpriteRenderer:
   m_ObjectHideFlags: 0
