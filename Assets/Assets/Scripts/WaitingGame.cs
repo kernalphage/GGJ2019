@@ -26,6 +26,7 @@ public class WaitingGame : MonoBehaviour
     public Vector3 sweatArea;
     public float sweatProbability;
 
+
     /// <summary>
     /// 
     /// </summary>
@@ -44,6 +45,11 @@ public class WaitingGame : MonoBehaviour
         }
     }
 
+    [SerializeField]
+    private AudioSource whineAudioSource = null;
+    [SerializeField]
+    private AudioClip whineSound = null;
+    private float whineTimer = 0.0f;
 
     // Use this for initialization
     void Start()
@@ -58,8 +64,24 @@ public class WaitingGame : MonoBehaviour
         // Win goes here
     }
     // Update is called once per frame
+
+    private int dumbCounter = 0;
     void Update()
     {
+        #region Whine loop
+        whineTimer += Time.deltaTime;
+        if (whineTimer >= 3.0f)
+        {
+            dumbCounter++;
+            //reset
+            whineTimer = 0.0f;
+            if (dumbCounter < 3)
+                whineAudioSource.PlayOneShot(whineSound, .7f);
+        }
+        #endregion
+
+
+
         string[] axes = { "Horizontal", "Vertical", "Fire1", "Fire2" };
         bool pressed = Input.anyKeyDown;
         foreach (var axis in axes)
@@ -73,10 +95,10 @@ public class WaitingGame : MonoBehaviour
             rotx += Time.deltaTime * rotSpeed;
             FuckupCounter++;
 
-            if(Random.value < sweatProbability)
+            if (Random.value < sweatProbability)
             {
                 var s = Instantiate(sweat);
-                s.transform.position = Vector3.Scale(Random.insideUnitSphere, sweatArea) + sweatPos; 
+                s.transform.position = Vector3.Scale(Random.insideUnitSphere, sweatArea) + sweatPos;
             }
         }
         rotx -= rotx * Time.deltaTime * decay;
