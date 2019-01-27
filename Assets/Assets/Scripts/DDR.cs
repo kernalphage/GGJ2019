@@ -144,7 +144,7 @@ public class DDR : MonoBehaviour
             GameObject obj;
             obj = Instantiate(heartParticle, dogTransform);
 
-            obj.GetComponent<HeartParticleComponent>().UpdateBurstAmount(_curidx);
+            obj.GetComponent<HeartParticleComponent>().UpdateBurstAmount(_curidx, false, 0.0f);
         }
 
     }

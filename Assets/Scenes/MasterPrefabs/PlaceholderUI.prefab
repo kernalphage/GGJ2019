@@ -1250,6 +1250,8 @@ MonoBehaviour:
   - {fileID: 114648952494242294}
   overallBG: {fileID: 114746854873682972}
   myText: {fileID: 114439908230495090}
+  heartParticle: {fileID: 1068375933418428, guid: cf6574067654f3b4d88f8c70019ebf46,
+    type: 2}
 --- !u!114 &114439908230495090
 MonoBehaviour:
   m_ObjectHideFlags: 1

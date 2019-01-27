@@ -27,7 +27,7 @@ public class HeartParticleComponent : MonoBehaviour
     }
 
 
-    public void UpdateBurstAmount(int _curIdx)
+    public void UpdateBurstAmount(int _curIdx, bool _doSizeIncrease, float _sizeMultiplier)
     {
         //Basically just affecting the particle based on how far through the curIdx we are.
 
@@ -43,21 +43,34 @@ public class HeartParticleComponent : MonoBehaviour
         myParticleSystem.emission.SetBurst(0, new ParticleSystem.Burst(0.0f, _curIdx * (Random.Range(minBurstBase, maxBurstBase))));
 
         ParticleSystem.MainModule main = myParticleSystem.main;
-        //main.startSizeMultiplier = _curIdx;
+        if (_doSizeIncrease)
+        {
+            main.startSizeMultiplier = _sizeMultiplier;
+            main.loop = true;
+         
+            killParticle = false;
+          
+        }
+
         main.startSize = _curIdx * (Random.Range(.3f, .4f));
 
         myParticleSystem.Play();
 
     }
+
+    private bool killParticle = true;
     // Update is called once per frame
     void Update()
     {
 
-
-        timer += Time.deltaTime;
-        if (timer >= lifespan)
+        if (killParticle == true)
         {
-            Destroy(gameObject);
+            timer += Time.deltaTime;
+            if (timer >= lifespan)
+            {
+                Destroy(gameObject);
+            }
         }
+       
     }
 }
