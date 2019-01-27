@@ -59,7 +59,7 @@ public class MinigameLoopManager : MonoBehaviour
 
     private bool doMinigameCountdown = false;
 
-   
+
 
     private Text currentcountDownText = null;
     private Slider currentbottomSlider = null;
@@ -231,8 +231,10 @@ public class MinigameLoopManager : MonoBehaviour
 
             timer += Time.deltaTime;
             curMinigameDuration -= Time.deltaTime;
-            currentcountDownText.text = "Countdown: " + curMinigameDuration;
-            currentbottomSlider.value = curMinigameDuration / totalTimer;
+            if (null != currentcountDownText)
+                currentcountDownText.text = "Countdown: " + curMinigameDuration;
+            if (null != currentbottomSlider)
+                currentbottomSlider.value = curMinigameDuration / totalTimer;
 
 
 
