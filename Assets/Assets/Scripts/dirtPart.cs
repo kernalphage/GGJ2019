@@ -11,7 +11,10 @@ public class dirtPart : MonoBehaviour {
     GameObject dust;
     Color startColor;
     Color endColor;
+    public float endAlpha = 0;
 
+    public bool keep = false;
+    public float maxRotateSpeed = 400;
     float rotateSpeed;
 
 	// Use this for initialization
@@ -19,9 +22,9 @@ public class dirtPart : MonoBehaviour {
         dust = transform.Find("dustCloud").gameObject;
         startColor = dust.GetComponent<SpriteRenderer>().color;
         endColor = dust.GetComponent<SpriteRenderer>().color;
-        endColor.a = 0;
+        endColor.a = endAlpha;
         t = 0;
-        rotateSpeed = (Random.value * 2 - 1) * 400;
+        rotateSpeed = (Random.value * 2 - 1) * maxRotateSpeed;
 	}
 	
 	// Update is called once per frame
@@ -39,7 +42,7 @@ public class dirtPart : MonoBehaviour {
             dust.transform.localRotation *= Quaternion.Euler(0, 0, Time.deltaTime * rotateSpeed);
             dust.GetComponent<SpriteRenderer>().color = Color.Lerp(startColor, endColor, mapt);
         }
-        else
+        else if(!keep)
         {
             Destroy(gameObject);
         }
