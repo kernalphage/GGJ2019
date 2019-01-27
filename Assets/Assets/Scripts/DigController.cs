@@ -47,7 +47,8 @@ public struct Paw
             if (finishedDig)
             {
                 Debug.Log("Finished dig");
-                audio.time = (audio.clip.length - audioDelay) * Random.value;
+                audio.time = audioDelay * Random.value;
+                audio.pitch = .85f + Random.value * .3f;
                 audio.PlayDelayed(0);
                 curaudio = audioDelay;
             }
