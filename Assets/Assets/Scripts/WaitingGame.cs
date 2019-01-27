@@ -13,7 +13,12 @@ public class WaitingGame : MonoBehaviour
     public Vector3 moveStrength;
     public float rotSpeed;
     public float decay = .25f;
-
+    [Header("Wag")]
+    public float wagSpeed;
+    public float wagAmount;
+    public float fuckupAmount;
+    public float wagStart;
+    public GameObject tail;
 
     /// <summary>
     /// 
@@ -65,6 +70,9 @@ public class WaitingGame : MonoBehaviour
         rotx -= rotx * Time.deltaTime * decay;
         rotx = Mathf.Clamp01(rotx);
         doge.transform.localScale = Vector3.one + (moveStrength * rotx);
+
+        float wag = wagStart + Mathf.Sin(wagSpeed * Time.time) * wagAmount;
+        tail.transform.rotation = Quaternion.Euler(0, 0, fuckupCounter * fuckupAmount + wag);
 
     }
 }
