@@ -10,10 +10,12 @@ public class Chew : MonoBehaviour
     public Sprite[] anims;
     public string[] sequence;
     public float[] rotations;
+    public Vector3[] sheepPos;
     public int idx;
     private float currot;
     private float targetRot;
     public float rotSpeed;
+    public float tweenSpeed;
 
     public Vector2 clodSize;
 
@@ -43,9 +45,9 @@ public class Chew : MonoBehaviour
         Vector3 pos = Random.insideUnitCircle;
         pos.x *= clodSize.x;
         pos.y *= clodSize.y;
-        pos = bone.transform.TransformPoint(pos);
+        pos = bone.transform.GetChild(0).TransformPoint(pos);
         d.transform.position = pos;
-        d.transform.rotation = Quaternion.Euler(0, 0, (Random.value * 360));
+        d.transform.rotation = Quaternion.Euler(0, 0, (Random.value * 90 + 140));
     }
 
     // Update is called once per frame
@@ -62,9 +64,10 @@ public class Chew : MonoBehaviour
             chewFluff();
             chewFluff();
         }
+
         currot = Mathf.LerpAngle(currot, targetRot, Time.deltaTime * rotSpeed); ;
         mouth.transform.rotation = Quaternion.Euler(0, 0, currot);
-
+        bone.transform.localPosition = Vector3.Lerp(bone.transform.localPosition, sheepPos[idx], Time.deltaTime * tweenSpeed);
         
         //mouth.transform.rotation = Quaternion.Euler(0, 0, Mathf.LerpAngle(mouthMin, mouthMax, mouthT));
         //bone.transform.rotation = Quaternion.Euler(0, 0, Mathf.LerpAngle(boneMin, boneMax, boneT));
